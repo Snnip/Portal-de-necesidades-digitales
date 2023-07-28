@@ -13,7 +13,7 @@ mediante un fichero digital.
 
 4. Ejecutar `npm run dev` para lanzar el servidor.
 
-## Base de datos
+## portal_de_necesidades
 
 ### users
 
@@ -23,7 +23,7 @@ mediante un fichero digital.
 | firstName  | VARCHAR(50) NOT NULL                    | Nombre del usuario                     |
 | lastName   | VARCHAR(100) NOT NULL                   | Apellido del usuario                   |
 | email      | VARCHAR(100) NOT NULL UNIQUE            | Correo electrónico del usuario         |
-| password   | VARCHAR(100) NOT NULL                   | Contraseña del usuario                 |
+| password   | VARCHAR(100) NOT NULL UNIQUE            | Contraseña del usuario                 |
 | biograph   | TEXT                                    | Biografía del usuario                  |
 | avatar     | CHAR(40)                                | Avatar del usuario (nombre de la foto) |
 | createdAt  | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación del usuario   |
@@ -31,44 +31,33 @@ mediante un fichero digital.
 
 ### services
 
-| Campo           | Tipo                                    | Descripción                           |
-| --------------- | --------------------------------------- | ------------------------------------- |
-| id              | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del usuario       |
-| servicesName    | VARCHAR(200)                            | Título del servicio                   |
-| description     | TEXT                                    | Explicación del servicio ofrecido     |
-| file            | VARCHAR(255)                            | Ruta                                  |
-| serviceResolved | BOOLEAN DEFAULT FALSE                   | Estado de resolución de un servicio   |
-| serviceTaken    | BOOLEAN DEFAULT FALSE                   | Si se está trabajando en ese servicio |
-| userId          | INT UNSIGNED NOT NULL                   | Identificador del usuario creador     |
-| createdAt       | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación del usuario  |
-| FOREIGN KEY     | (userId) REFERENCES users(id)           | Llave foranea                         |
+| Campo       | Tipo                                    | Descripción                                |
+| ----------- | --------------------------------------- | ------------------------------------------ |
+| id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del usuario            |
+| name        | VARCHAR(200) NOT NULL                   | Título del servicio                        |
+| description | TEXT                                    | Explicación del servicio que se necesita   |
+| fileName    | CHAR(40)                                | Nombre del archivo a resolver (uuid + ext) |
+| resolved    | BOOLEAN DEFAULT FALSE                   | Estado de resolución de un servicio        |
+| userId      | INT UNSIGNED NOT NULL                   | Identificador del usuario creador          |
+| createdAt   | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación del usuario       |
+| FOREIGN KEY | (userId) REFERENCES users(id)           | Llave foranea                              |
 
 ### comments
 
-| Campo       | Tipo                                    | Descripción                             |
-| ----------- | --------------------------------------- | --------------------------------------- |
-| id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del usuario         |
-| content     | VARCHAR(100)                            | Contenido                               |
-| userId      | INT UNSIGNED NOT NULL                   | Identificador del usuario creador       |
-| serviceId   | INT UNSIGNED NOT NULL                   | Identificador del servicio creado       |
-| createdAt   | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación de comentarios |
-| FOREIGN KEY | (userId) REFERENCES users(id)           | Llave foranea                           |
-| FOREIGN KEY | (serviceId) REFERENCES services(id)     | Llave foranea                           |
-
-### workingOn
-
-| Campo       | Tipo                                    | Descripción                             |
-| ----------- | --------------------------------------- | --------------------------------------- |
-| id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del usuario         |
-| userId      | INT UNSIGNED NOT NULL                   | Identificador del usuario creador       |
-| serviceId   | INT UNSIGNED NOT NULL                   | Identificador del servicio creado       |
-| createdAt   | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación de comentarios |
-| FOREIGN KEY | (userId) REFERENCES users(id)           | Llave foranea                           |
-| FOREIGN KEY | (serviceId) REFERENCES services(id)     | Llave foranea                           |
+| Campo       | Tipo                                    | Descripción                              |
+| ----------- | --------------------------------------- | ---------------------------------------- |
+| id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del usuario          |
+| fileName    | CHAR(40)                                | Nombre de archivo terminado (uuid + ext) |
+| content     | TEXT                                    | Texto de commentario                     |
+| userId      | INT UNSIGNED NOT NULL                   | Identificador del usuario creador        |
+| serviceId   | INT UNSIGNED NOT NULL                   | Identificador del servicio creado        |
+| createdAt   | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación de comentarios  |
+| FOREIGN KEY | (userId) REFERENCES users(id)           | Llave foranea                            |
+| FOREIGN KEY | (serviceId) REFERENCES services(id)     | Llave foranea                            |
 
 ## Endpoints
 
-POST - [`/users/resgister`] - Crea un nuevo usuario.
+POST - [`/users/register`] - Crea un nuevo usuario.
 POST - [`/users/login`] - Logea a un usuario.
 POST - [`/users/:user_id/services`] - Crea un nuevo servicio requerido por el usuario.
 POST - [`/services/:service_id/comments`] - Crea un nuevo comentario en un servicio.
