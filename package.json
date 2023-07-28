@@ -1,0 +1,12 @@
+{
+  "name": "portal-de-necesidades-digitales",
+  "version": "1.0.0",
+  "description": "Se trata de una API que permita gestionar una web donde personas que necesiten algún servicio digital puedan pedir ayuda a otros usuarios (estilo Fiverr). Por ejemplo: traducir un texto, editar una foto, revisar un documento, etc… Solo necesidades que puedan realizarse\r mediante un fichero digital.",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon ./app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
