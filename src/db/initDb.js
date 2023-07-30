@@ -36,7 +36,7 @@ const main = async () => {
         CREATE TABLE services (
           id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
           name VARCHAR(200) NOT NULL,
-          description TEXT,
+          description TEXT NOT NULL,
           fileName CHAR(40),
           resolved BOOLEAN DEFAULT FALSE,
           userId INT UNSIGNED NOT NULL,
@@ -50,7 +50,7 @@ const main = async () => {
         CREATE TABLE comments (
           id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
           fileName CHAR(40),
-          content TEXT,
+          content TEXT NOT NULL,
           userId INT UNSIGNED NOT NULL,
           serviceId INT UNSIGNED NOT NULL,
           createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 

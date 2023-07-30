@@ -2,7 +2,7 @@ const fs = require('fs/promises');
 const path = require('path');
 const uuid = require('uuid');
 
-// Funcrión que guarda un archivo en el directorio de subida de archivos.
+// Función que guarda un archivo en el directorio de subida de archivos.
 const saveFileService = async (file) => {
     try {
         // Creamos la ruta absoluta al directorio de subida de archivos.

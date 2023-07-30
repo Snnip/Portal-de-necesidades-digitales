@@ -35,8 +35,8 @@ mediante un fichero digital.
 | ----------- | --------------------------------------- | ------------------------------------------ |
 | id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del usuario            |
 | name        | VARCHAR(200) NOT NULL                   | Título del servicio                        |
-| description | TEXT                                    | Explicación del servicio que se necesita   |
-| fileName    | CHAR(40)                                | Nombre del archivo a resolver (uuid + ext) |
+| description | TEXT NOT NULL                           | Explicación del servicio que se necesita   |
+| fileName    | CHAR(40) NOT NULL                       | Nombre del archivo a resolver (uuid + ext) |
 | resolved    | BOOLEAN DEFAULT FALSE                   | Estado de resolución de un servicio        |
 | userId      | INT UNSIGNED NOT NULL                   | Identificador del usuario creador          |
 | createdAt   | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación del usuario       |
@@ -55,14 +55,15 @@ mediante un fichero digital.
 | FOREIGN KEY | (userId) REFERENCES users(id)           | Llave foranea                            |
 | FOREIGN KEY | (serviceId) REFERENCES services(id)     | Llave foranea                            |
 
-## Endpoints
+## Endpoints ✅
 
 POST - [`/users/register`] - Crea un nuevo usuario.
-POST - [`/users/login`] - Logea a un usuario.
+POST - [`/users/login`] - Logea a un usuario retornando un token.
 POST - [`/users/:user_id/services`] - Crea un nuevo servicio requerido por el usuario.
 POST - [`/services/:service_id/comments`] - Crea un nuevo comentario en un servicio.
 
-GET - [`/users/:user_id`] - Retorna información del usuario.
+GET - [`/users/services`] - Retorna los servicios existentes.
+GET - [`/users/:user_id`] - Retorna información pública de un usuario (ver el perfil).
 GET - [`/users/:user_id/services`] - Retorna información de los servicios creados por un usuario.
 GET - [`/services/:service_id`] - Retorna información de un servicio específico.
 GET - [`/services/:service_id/comments`] - Retorna información de todos los comentarios de un servicio.
@@ -73,3 +74,38 @@ PUT - [`/services/:service_id`] - Actualiza la información de un servicio espec
 
 DELETE - [`/users/:user_id`] - Elimina un usuario.
 DELETE - [`/services/:service_id`] - Elimina un servicio específico.
+
+------------Endpoints Will----------------------
+
+## Endpoints del usuario ✅
+
+-   **POST** - [`/users/register`] - Crea un nuevo usuario.
+-   **POST** - [`/users/login`] - Logea a un usuario retornando un token.
+-   **GET** - [`/users/:userId`] - Retorna información pública de un usuario (ver el perfil).
+-   **GET** - [`/users`] - Retorna información privada del usuario con el id del token. ➡️ `Token`
+-   **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token`
+-   **PUT** - [`/users/password`] - Actualiza la contraseña de un usuario. ➡️ `Token`
+-   **POST** - [`/users/:userId/votes`] - Vota un usuario (entre 1 y 5). ➡️ `Token`
+
+===============================================
+
+-   **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.(Opcional al acabar el proyecto)
+-   **PUT** - [`/users/password/reset`] - Actualiza la contraseña de un usuario mediante un código de recuperación.(Opcional al acabar el proyecto)
+
+## Endpoints de servicios
+
+-   **GET** - [`/services`] - Retorna el listado de servicios.
+-   **GET** - [`/services/:serviceId`] - Retorna un servicio en concreto. ➡️ `Token`
+-   **POST** - [`/services`] - Crea un nuevo servicio. ➡️ `Token`
+-   **POST** - [`/services/:serviceId`/files`] - Agregar un archivo a una entrada. ➡️ `Token`
+-   **PUT** - [`/services/:serviceId`] - Actualizar como resuelto un servicio en concreto. ➡️ `Token`
+-   **DELETE** - [`/services/:serviceId`] - Eliminar un servicio en concreto. ➡️ `Token`
+-   **DELETE** - [`/services/:serviceId`/files`/:serviceId`] - Eliminar un archivo de una entrada. ➡️ `Token`
+
+## Endpoints de comentarios
+
+-   **GET** - [`/comments/:commentId`] - Retorna un comentario en concreto. ➡️ `Token`
+-   **POST** - [`/comments`] - Crea un nuevo comentario. ➡️ `Token`
+-   **POST** - [`/comments/:commentId/files`] - Agregar un archivo a una entrada. ➡️ `Token`
+-   **DELETE** - [`/comments/:commentId`] - Eliminar un comentario de una entrada. ➡️ `Token`
+-   **DELETE** - [`/comments/:commentId/files/:commentId`] - Eliminar un archivo de un comentario de una entrada. ➡️ `Token`
