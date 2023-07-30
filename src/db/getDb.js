@@ -12,7 +12,7 @@ const getDb = async () => {
     try {
         // Si no existe un array de conexiones
         if (!pool) {
-            // Creamos una conexión con la base de datos
+            // Creamos una conexión con la base de datos. Este proceso permite crear una base de datos de manera automatica si no existe.
             const connection = await mysql.createConnection({
                 host: MYSQL_HOST,
                 user: MYSQL_USER,

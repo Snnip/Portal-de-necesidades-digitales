@@ -1,7 +1,8 @@
 # Portal de necesidades digitales.
 
-Se trata de una API que permita gestionar una web donde personas que necesiten algún servicio digital puedan pedir ayuda a otros usuarios (estilo Fiverr). Por ejemplo: traducir un texto, editar una foto, revisar un documento, etc… Solo necesidades que puedan realizarse
-mediante un fichero digital.
+-   API que permite gestionar una web donde personas que necesiten algún servicio digital puedan pedir ayuda a otros usuarios.
+
+-- Ejemplo: traducir un texto, editar una foto, revisar un documento, etc… Solo necesidades que puedan realizarse mediante un fichero digital.
 
 # Instalar
 
@@ -20,10 +21,9 @@ mediante un fichero digital.
 | Campo      | Tipo                                    | Descripción                            |
 | ---------- | --------------------------------------- | -------------------------------------- |
 | id         | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del usuario        |
-| firstName  | VARCHAR(50) NOT NULL                    | Nombre del usuario                     |
-| lastName   | VARCHAR(100) NOT NULL                   | Apellido del usuario                   |
-| email      | VARCHAR(100) NOT NULL UNIQUE            | Correo electrónico del usuario         |
-| password   | VARCHAR(100) NOT NULL UNIQUE            | Contraseña del usuario                 |
+| userName   | VARCHAR(50) UNIQUE NOT NULL             | Nombre del usuario                     |
+| email      | VARCHAR(100) UNIQUE NOT NULL            | Correo electrónico del usuario         |
+| password   | VARCHAR(100) NOT NULL                   | Contraseña del usuario                 |
 | biograph   | TEXT                                    | Biografía del usuario                  |
 | avatar     | CHAR(40)                                | Avatar del usuario (nombre de la foto) |
 | createdAt  | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación del usuario   |
@@ -33,8 +33,8 @@ mediante un fichero digital.
 
 | Campo       | Tipo                                    | Descripción                                |
 | ----------- | --------------------------------------- | ------------------------------------------ |
-| id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del usuario            |
-| name        | VARCHAR(200) NOT NULL                   | Título del servicio                        |
+| id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del servicio           |
+| name        | VARCHAR(50) NOT NULL                    | Título del servicio                        |
 | description | TEXT NOT NULL                           | Explicación del servicio que se necesita   |
 | fileName    | CHAR(40) NOT NULL                       | Nombre del archivo a resolver (uuid + ext) |
 | resolved    | BOOLEAN DEFAULT FALSE                   | Estado de resolución de un servicio        |
@@ -85,7 +85,6 @@ DELETE - [`/services/:service_id`] - Elimina un servicio específico.
 -   **GET** - [`/users`] - Retorna información privada del usuario con el id del token. ➡️ `Token`
 -   **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token`
 -   **PUT** - [`/users/password`] - Actualiza la contraseña de un usuario. ➡️ `Token`
--   **POST** - [`/users/:userId/votes`] - Vota un usuario (entre 1 y 5). ➡️ `Token`
 
 ===============================================
 
@@ -97,13 +96,12 @@ DELETE - [`/services/:service_id`] - Elimina un servicio específico.
 -   **GET** - [`/services`] - Retorna el listado de servicios.
 -   **GET** - [`/services/:serviceId`] - Retorna un servicio en concreto. ➡️ `Token`
 -   **POST** - [`/services`] - Crea un nuevo servicio. ➡️ `Token`
--   **POST** - [`/services/:serviceId`/files`] - Agregar un archivo a una entrada. ➡️ `Token`
--   **PUT** - [`/services/:serviceId`] - Actualizar como resuelto un servicio en concreto. ➡️ `Token`
+-   **PUT** - [`/services/:serviceId`] - Actualizar una entrada. ➡️ `Token`
 -   **DELETE** - [`/services/:serviceId`] - Eliminar un servicio en concreto. ➡️ `Token`
--   **DELETE** - [`/services/:serviceId`/files`/:serviceId`] - Eliminar un archivo de una entrada. ➡️ `Token`
 
 ## Endpoints de comentarios
 
+-   **GET** - [`/comments/:serviceId`] - Retorna todos los comentarios de un servicio en concreto. ➡️ `Token`
 -   **GET** - [`/comments/:commentId`] - Retorna un comentario en concreto. ➡️ `Token`
 -   **POST** - [`/comments`] - Crea un nuevo comentario. ➡️ `Token`
 -   **POST** - [`/comments/:commentId/files`] - Agregar un archivo a una entrada. ➡️ `Token`
