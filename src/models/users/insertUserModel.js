@@ -5,7 +5,10 @@ const bcrypt = require('bcrypt');
 const getDb = require('../../db/getDb');
 
 // Importamos los errores.
-const { emailAlreadyRegisteredError } = require('../../services/errorService');
+const {
+    emailAlreadyRegisteredError,
+    userNameAlreadyRegisteredError,
+} = require('../../services/errorService');
 
 // Insertar un usuario.
 
@@ -16,7 +19,7 @@ const insertUserModel = async ({ userName, email, password }) => {
 
         // Comprobamos si existe algún usuario con el email establecido.
 
-        const [users] = await connection.query(
+        let [users] = await connection.query(
             `
             SELECT id FROM users WHERE email = ? 
         `,
@@ -26,6 +29,20 @@ const insertUserModel = async ({ userName, email, password }) => {
         // Si existe algún usuario con ese email lanzamos un error.
         if (users.length > 0) {
             emailAlreadyRegisteredError();
+        }
+
+        // Comprobamos si existe algún usuario con el nombre de usuario establecido.
+
+        [users] = await connection.query(
+            `
+            SELECT id FROM users WHERE userName = ? 
+        `,
+            [userName]
+        );
+
+        // Si existe algún usuario con ese email lanzamos un error.
+        if (users.length > 0) {
+            userNameAlreadyRegisteredError();
         }
 
         // Encriptamos la contraseña.
