@@ -16,9 +16,6 @@ const selectUserByIdModel = async (userId) => {
             [userId]
         );
 
-        // Si no existe el usuario lanzamos error.
-        if (users.length === 0) notFoundError('usuario');
-
         // El array de usuarios solo debe traer un usuario ya que el email es unico. Retornamos el usuario en posicion 0.
         return users[0]; // se asegura de que envie el objeto y no [{}]
     } finally {

@@ -11,7 +11,7 @@ const morgan = require('morgan');
 const port = process.env.PORT || 3000;
 
 // Importamos las rutas.
-const routes = require('./src/routes/userRoutes');
+const routes = require('./src/routes');
 
 // Importamos los errores.
 const errorController = require('./src/controllers/errors/errorController');

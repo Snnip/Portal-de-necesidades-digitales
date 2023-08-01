@@ -1,0 +1,5 @@
+Implementar Joi
+    - Crear los esquemas
+    - Implemetar joi a los enpoints de users ✅
+
+Implementar los endpoints de entries

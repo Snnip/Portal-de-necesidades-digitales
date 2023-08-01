@@ -12,9 +12,18 @@ const {
 // Importamos modelos
 const selectUserByEmailModel = require('../../models/users/selectUserByEmailModel');
 
+// Importamos los servicios.
+const validateSchemaService = require('../../services/validateSchemaService');
+
+// Importamos el esquema.
+const loginUserSchema = require('../../schemas/users/loginUserSchemas');
+
 const loginUserController = async (req, res, next) => {
     try {
         const { email, password } = req.body;
+
+        // Validamos el body con joi
+        await validateSchemaService(loginUserSchema, req.body);
 
         // Si faltan campos lanzamos error
         if (!email || !password) missingFieldsError();

@@ -1,8 +1,8 @@
 // Importamos la función que devuelve una conexión con la base de datos.
 const getDb = require('../../db/getDb');
 
-// Función que realiza una consulta a la base de datos para
-const sampleModel = async (params, a, pedir) => {
+// Función que realiza una consulta a la base de datos para crear un nuevo servicio
+const insertEntryModel = async (params, a, pedir) => {
     let connection;
     try {
         connection = await getDb();
@@ -11,4 +11,4 @@ const sampleModel = async (params, a, pedir) => {
     }
 };
 
-module.exports = sampleModel;
+module.exports = insertEntryModel;

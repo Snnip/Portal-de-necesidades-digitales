@@ -11,9 +11,7 @@ const main = async () => {
 
         console.log('Borrando tablas');
 
-        await connection.query(
-            'DROP TABLE IF EXISTS comments, services, users'
-        );
+        await connection.query('DROP TABLE IF EXISTS comments, entries, users');
         console.log('Creando tablas');
 
         // Creamos la tabla users
@@ -34,9 +32,9 @@ const main = async () => {
           );
       `);
 
-        // Creamos la tabla services
+        // Creamos la tabla entries
         await connection.query(`
-          CREATE TABLE services (
+          CREATE TABLE entries (
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
               name VARCHAR(50) NOT NULL,
               category ENUM('video-editing', 'image-editing', 'document-translation', 'document-correction', 'code-correction', 'other') DEFAULT 'other',
@@ -56,10 +54,10 @@ const main = async () => {
               fileName CHAR(40),
               content TEXT NOT NULL,
               userId INT UNSIGNED NOT NULL,
-              serviceId INT UNSIGNED NOT NULL,
+              entryId INT UNSIGNED NOT NULL,
               createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
               FOREIGN KEY (userId) REFERENCES users(id),
-              FOREIGN KEY (serviceId) REFERENCES services(id)
+              FOREIGN KEY (entryId) REFERENCES entries(id)
           );
       `);
 
