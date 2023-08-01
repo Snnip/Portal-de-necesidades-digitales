@@ -18,16 +18,18 @@
 
 ### users
 
-| Campo      | Tipo                                    | Descripción                            |
-| ---------- | --------------------------------------- | -------------------------------------- |
-| id         | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del usuario        |
-| userName   | VARCHAR(50) UNIQUE NOT NULL             | Nombre del usuario                     |
-| email      | VARCHAR(100) UNIQUE NOT NULL            | Correo electrónico del usuario         |
-| password   | VARCHAR(100) NOT NULL                   | Contraseña del usuario                 |
-| biography  | TEXT                                    | Biografía del usuario                  |
-| avatar     | CHAR(40)                                | Avatar del usuario (nombre de la foto) |
-| createdAt  | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación del usuario   |
-| modifiedAt | DATETIME ON UPDATE CURRENT_TIMESTAMP    | Fecha de modificación del usuario      |
+| Campo            | Tipo                                    | Descripción                              |
+| ---------------- | --------------------------------------- | ---------------------------------------- |
+| id               | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del usuario          |
+| userName         | VARCHAR(50) UNIQUE NOT NULL             | Nombre del usuario                       |
+| email            | VARCHAR(100) UNIQUE NOT NULL            | Correo electrónico del usuario           |
+| password         | VARCHAR(100) NOT NULL                   | Contraseña del usuario                   |
+| biography        | TEXT                                    | Biografía del usuario                    |
+| avatar           | CHAR(40)                                | Avatar del usuario (nombre de la foto)   |
+| active           | BOOLEAN DEFAULT FALSE                   | Si es un usuario verificado o no (email) |
+| registrationCode | VARCHAR(36)                             | Código de registro del usuario           |
+| createdAt        | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación del usuario     |
+| modifiedAt       | DATETIME ON UPDATE CURRENT_TIMESTAMP    | Fecha de modificación del usuario        |
 
 ### services
 
@@ -85,7 +87,7 @@ DELETE - [`/services/:service_id`] - Elimina un servicio específico.
 -   **GET** - [`/users`] - Retorna información privada del usuario con el id del token. ➡️ `Token` ✅
 -   **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token` ✅
 
-===============================================
+======================================================================================================
 
 -   **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.(Opcional al acabar el proyecto)
 -   **PUT** - [`/users/password/reset`] - Actualiza la contraseña de un usuario mediante un código de recuperación.(Opcional al acabar el proyecto) ➡️ `Token`

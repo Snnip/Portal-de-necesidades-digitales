@@ -25,6 +25,10 @@ const main = async () => {
               password VARCHAR(100) NOT NULL,
               biograph TEXT,
               avatar CHAR(40),
+              active BOOLEAN DEFAULT FALSE,
+              role ENUM('admin', 'normal') DEFAULT 'normal',
+              registrationCode CHAR(30),
+              recoverPassCode CHAR(10),
               createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
               modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
           );
