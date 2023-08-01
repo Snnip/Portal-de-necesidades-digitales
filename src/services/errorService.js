@@ -27,6 +27,13 @@ module.exports = {
             message: 'Token inválido',
         };
     },
+    missingFieldsError() {
+        throw {
+            httpStatus: 401, // Unauthorized
+            code: 'MISSING_FIELDS',
+            message: 'Faltan campos',
+        };
+    },
     notAuthenticatedError() {
         throw {
             httpStatus: 401, // Unauthorized
@@ -48,10 +55,10 @@ module.exports = {
             message: 'Error al guardar el archivo en el disco',
         };
     },
-    userAlreadyRegisteredError() {
+    userNameAlreadyRegisteredError() {
         throw {
             httpStatus: 409, // Conflict
-            code: 'USER_ALREADY_REGISTERED',
+            code: 'USERNAME_ALREADY_REGISTERED',
             message: 'El nombre de usuario ya está registrado',
         };
     },

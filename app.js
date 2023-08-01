@@ -11,13 +11,14 @@ const morgan = require('morgan');
 const port = process.env.PORT || 3000;
 
 // Importamos las rutas.
-const routes = require('./src/routes');
+const routes = require('./src/routes/userRoutes');
 
 // Importamos los errores.
-const {
-    notFoundController,
-    errorController,
-} = require('./src/controllers/errors');
+const errorController = require('./src/controllers/errors/errorController');
+// const {
+//     notFoundController,
+//     errorController,
+// } = require('./src/controllers/errors');
 
 // Creamos el servidor.
 const app = express();
@@ -44,7 +45,12 @@ app.use(fileUpload());
 app.use(routes);
 
 // Middleware de ruta no encontrada.
-app.use(notFoundController);
+app.use((req, res) => {
+    res.status(404).send({
+        status: 'error',
+        message: 'Ruta no encontrada',
+    });
+});
 
 // Middleware de error.
 app.use(errorController);

@@ -1,12 +1,13 @@
 const fs = require('fs/promises');
 const path = require('path');
 const uuid = require('uuid');
+const sharp = require('sharp');
 
 // Importamos error
 const { saveFileError } = require('./errorService');
 
 // Función que guarda un archivo en el directorio de subida de archivos.
-const saveFileService = async (file) => {
+const saveAvatarService = async (img, width) => {
     try {
         // Creamos la ruta absoluta al directorio de subida de archivos.
         const uploadsPath = path.join(
@@ -24,7 +25,7 @@ const saveFileService = async (file) => {
         }
 
         // Obtenemos la extensión del archivo.
-        const fileExt = path.extname(file.name);
+        const fileExt = path.extname(img.name);
 
         // Creamos la ruta absoluta al directorio donde guardaremos el archivo.
         // Es importante eliminar el punto de la extensión para evitar crear una carpeta oculta.
@@ -43,8 +44,12 @@ const saveFileService = async (file) => {
         // Generamos la ruta absoluta del archivo.
         const filePath = path.join(dirPath, fileName);
 
+        const avatarImg = sharp(img.data);
+
+        avatarImg.resize(width);
+
         // Guardamos el archivo.
-        await file.mv(filePath);
+        await avatarImg.toFile(filePath);
 
         // Retornamos el nombre del archivo.
         return fileName;
@@ -54,4 +59,4 @@ const saveFileService = async (file) => {
     }
 };
 
-module.exports = saveFileService;
+module.exports = saveAvatarService;

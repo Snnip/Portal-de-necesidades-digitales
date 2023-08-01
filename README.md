@@ -24,7 +24,7 @@
 | userName   | VARCHAR(50) UNIQUE NOT NULL             | Nombre del usuario                     |
 | email      | VARCHAR(100) UNIQUE NOT NULL            | Correo electrónico del usuario         |
 | password   | VARCHAR(100) NOT NULL                   | Contraseña del usuario                 |
-| biograph   | TEXT                                    | Biografía del usuario                  |
+| biography  | TEXT                                    | Biografía del usuario                  |
 | avatar     | CHAR(40)                                | Avatar del usuario (nombre de la foto) |
 | createdAt  | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación del usuario   |
 | modifiedAt | DATETIME ON UPDATE CURRENT_TIMESTAMP    | Fecha de modificación del usuario      |
@@ -79,24 +79,23 @@ DELETE - [`/services/:service_id`] - Elimina un servicio específico.
 
 ## Endpoints del usuario ✅
 
--   **POST** - [`/users/register`] - Crea un nuevo usuario.
--   **POST** - [`/users/login`] - Logea a un usuario retornando un token.
--   **GET** - [`/users/:userId`] - Retorna información pública de un usuario (ver el perfil).
--   **GET** - [`/users`] - Retorna información privada del usuario con el id del token. ➡️ `Token`
--   **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token`
--   **PUT** - [`/users/password`] - Actualiza la contraseña de un usuario. ➡️ `Token`
+-   **POST** - [`/users`] - Crea un nuevo usuario.(Falta Joi) ✅
+-   **POST** - [`/users/login`] - Logea a un usuario retornando un token. (Falta Joi) ✅
+-   **GET** - [`/users/:userId`] - Retorna información pública de un usuario (ver el perfil). ✅
+-   **GET** - [`/users`] - Retorna información privada del usuario con el id del token. ➡️ `Token` ✅
+-   **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token` ✅
 
 ===============================================
 
 -   **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.(Opcional al acabar el proyecto)
--   **PUT** - [`/users/password/reset`] - Actualiza la contraseña de un usuario mediante un código de recuperación.(Opcional al acabar el proyecto)
+-   **PUT** - [`/users/password/reset`] - Actualiza la contraseña de un usuario mediante un código de recuperación.(Opcional al acabar el proyecto) ➡️ `Token`
 
 ## Endpoints de servicios
 
 -   **GET** - [`/services`] - Retorna el listado de servicios.
 -   **GET** - [`/services/:serviceId`] - Retorna un servicio en concreto. ➡️ `Token`
 -   **POST** - [`/services`] - Crea un nuevo servicio. ➡️ `Token`
--   **PUT** - [`/services/:serviceId`] - Actualizar una entrada. ➡️ `Token`
+-   **PUT** - [`/services/:serviceId`] - Actualizar una servicio. ➡️ `Token`
 -   **DELETE** - [`/services/:serviceId`] - Eliminar un servicio en concreto. ➡️ `Token`
 
 ## Endpoints de comentarios
@@ -104,6 +103,6 @@ DELETE - [`/services/:service_id`] - Elimina un servicio específico.
 -   **GET** - [`/comments/:serviceId`] - Retorna todos los comentarios de un servicio en concreto. ➡️ `Token`
 -   **GET** - [`/comments/:commentId`] - Retorna un comentario en concreto. ➡️ `Token`
 -   **POST** - [`/comments`] - Crea un nuevo comentario. ➡️ `Token`
--   **POST** - [`/comments/:commentId/files`] - Agregar un archivo a una entrada. ➡️ `Token`
+-   **POST** - [`/comments/:commentId/files`] - Agregar un archivo a una comentario. ➡️ `Token`
 -   **DELETE** - [`/comments/:commentId`] - Eliminar un comentario de una entrada. ➡️ `Token`
--   **DELETE** - [`/comments/:commentId/files/:commentId`] - Eliminar un archivo de un comentario de una entrada. ➡️ `Token`
+-   **DELETE** - [`/comments/:commentId/files`] - Eliminar un archivo de un comentario de una entrada. ➡️ `Token`

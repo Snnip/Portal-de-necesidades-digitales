@@ -35,6 +35,7 @@ const main = async () => {
           CREATE TABLE services (
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
               name VARCHAR(50) NOT NULL,
+              category ENUM('video-editing', 'image-editing', 'document-translation', 'document-correction', 'code-correction', 'other') DEFAULT 'other',
               description TEXT NOT NULL,
               fileName CHAR(40),
               resolved BOOLEAN DEFAULT FALSE,
