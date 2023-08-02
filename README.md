@@ -94,11 +94,11 @@ DELETE - [`/services/:service_id`] - Elimina un servicio específico.
 
 ## Endpoints de servicios
 
--   **GET** - [`/services`] - Retorna el listado de servicios.
--   **GET** - [`/services/:serviceId`] - Retorna un servicio en concreto. ➡️ `Token`
--   **POST** - [`/services`] - Crea un nuevo servicio. ➡️ `Token`
--   **PUT** - [`/services/:serviceId`] - Actualizar una servicio. ➡️ `Token`
--   **DELETE** - [`/services/:serviceId`] - Eliminar un servicio en concreto. ➡️ `Token`
+-   **GET** - [`/entries`] - Retorna el listado de servicios.
+-   **GET** - [`/entries/:entryId`] - Retorna un servicio en concreto. ➡️ `Token`
+-   **POST** - [`/entries`] - Crea un nuevo servicio. ➡️ `Token`
+-   **PUT** - [`/entries/:entryId`] - Actualizar una servicio. ➡️ `Token`
+-   **DELETE** - [`/entries/:entryId`] - Eliminar un servicio en concreto. ➡️ `Token`
 
 ## Endpoints de comentarios
 

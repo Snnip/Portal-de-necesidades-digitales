@@ -9,7 +9,7 @@ const commentsRoutes = require('./commentsRoutes');
 
 // Indicamos a express donde están las rutas de los usuarios
 router.use(usersRoutes);
-// router.use(servicesRoutes);
+router.use(entriesRoutes);
 // router.use(commentsRoutes);
 
 module.exports = router;

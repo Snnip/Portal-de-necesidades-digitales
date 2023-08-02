@@ -16,7 +16,7 @@ const selectUserByIdModel = async (userId) => {
             [userId]
         );
 
-        // El array de usuarios solo debe traer un usuario ya que el email es unico. Retornamos el usuario en posicion 0.
+        // El array de usuarios solo debe traer un usuario ya que el id es unico. Retornamos el usuario en posicion 0.
         return users[0]; // se asegura de que envie el objeto y no [{}]
     } finally {
         if (connection) connection.release();

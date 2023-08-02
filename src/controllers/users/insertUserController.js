@@ -1,4 +1,4 @@
-const Joi = require('joi');
+// const Joi = require('joi');
 
 // Insertamos modelos
 const insertUserModel = require('../../models/users/insertUserModel');
