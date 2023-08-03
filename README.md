@@ -83,7 +83,7 @@
 
 -   _GET_ - [`/entries/:entryId`] - Retorna un servicio en concreto. ➡️ `Token`
 -   _POST_ - [`/entries`] - Crea un nuevo servicio. ➡️ `Token` (Casi terminado)✅
--   _PUT_ - [`/entries/:entryId`] - Actualizar un servicio. ➡️ `Token`(posibilidad de ponerlo como resuelto)
+-   _PUT_ - [`/entries/:entryId`] - Actualizar un servicio. ➡️ `Token`(posibilidad de ponerlo como resuelto)✅
 -   _DELETE_ - [`/entries/:entryId`] - Eliminar un servicio en concreto. ➡️ `Token`
 
 ## Endpoints de comentarios

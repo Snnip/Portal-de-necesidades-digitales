@@ -9,12 +9,12 @@ const selectEntryByIdModel = async (entryId) => {
 
         // Selecionamos los datos que necesitamos.
         const [entries] = await connection.query(
-            `SELECT id, category, resolved FROM entries WHERE id = ?
+            `SELECT id, category, resolved, fileName , userId FROM entries WHERE id = ?
             `,
             [entryId]
         );
 
-        // El array de entriess solo debe traer un uentry ya que el id es unico. Retornamos el entry en posicion 0.
+        // El array de entries solo debe traer un entry ya que el id es unico. Retornamos el entry en posicion 0.
         return entries[0]; // se asegura de que envie el objeto y no [{}]
     } finally {
         if (connection) connection.release();

@@ -8,7 +8,7 @@ const {
     listEntriesController,
     editEntryController,
 } = require('../controllers/entries');
-const { authUser, userExists, entryExists } = require('../middlewares');
+const { authUser, canEdit, entryExists, userExists } = require('../middlewares');
 
 // Endpoints servicios
 router.post(`/entries`, authUser, userExists, insertEntryController);
@@ -18,6 +18,7 @@ router.put(
     authUser,
     userExists,
     entryExists,
+    canEdit,
     editEntryController
 );
 
