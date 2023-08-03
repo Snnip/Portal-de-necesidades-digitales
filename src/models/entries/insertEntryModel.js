@@ -2,16 +2,22 @@
 const getDb = require('../../db/getDb');
 
 // Función que realiza una consulta a la base de datos para crear un nuevo servicio
-const insertEntryModel = async ( name,description, fileName, userId) => {
+const insertEntryModel = async (
+    name,
+    category = 'other',
+    description,
+    fileName,
+    userId
+) => {
     let connection;
     try {
         connection = await getDb();
         // Insertamos entry.
         await connection.query(
             `
-            INSERT INTO entries ( description, fileName, userId) VALUES (?, ?, ?, ?)
+            INSERT INTO entries ( name, category, description, fileName, userId) VALUES (?, ?, ?, ?, ?)
         `,
-            [ name, description, fileName, userId]
+            [name, category, description, fileName, userId]
         );
     } finally {
         if (connection) connection.release();
@@ -19,5 +25,3 @@ const insertEntryModel = async ( name,description, fileName, userId) => {
 };
 
 module.exports = insertEntryModel;
-
-

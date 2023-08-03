@@ -15,10 +15,7 @@ const routes = require('./src/routes');
 
 // Importamos los errores.
 const errorController = require('./src/controllers/errors/errorController');
-// const {
-//     notFoundController,
-//     errorController,
-// } = require('./src/controllers/errors');
+const notFoundController = require('./src/controllers/errors/notFoundController');
 
 // Creamos el servidor.
 const app = express();

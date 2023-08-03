@@ -13,6 +13,13 @@ module.exports = {
             message: 'El email ya está registrado',
         };
     },
+    fileLimitReachedError() {
+        throw {
+            httpStatus: 409, // Conflict
+            code: 'VIDEO_LIMIT_REACHED',
+            message: 'Se ha alcanzado el límite de 1 archivo',
+        };
+    },
     invalidCredentialsError() {
         throw {
             httpStatus: 401, // Unauthorized
@@ -67,13 +74,6 @@ module.exports = {
             httpStatus: 409, // Conflict
             code: 'UNAUTHORIZED',
             message: 'El usuario no está autorizado para hacer esta operación',
-        };
-    },
-    fileLimitReachedError() {
-        throw {
-            httpStatus: 409, // Conflict
-            code: 'VIDEO_LIMIT_REACHED',
-            message: 'Se ha alcanzado el límite de 1 archivo',
         };
     },
 };

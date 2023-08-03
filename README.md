@@ -57,26 +57,6 @@
 | FOREIGN KEY | (userId) REFERENCES users(id)           | Llave foranea                            |
 | FOREIGN KEY | (serviceId) REFERENCES services(id)     | Llave foranea                            |
 
-## Endpoints ✅
-
-POST - [`/users/register`] - Crea un nuevo usuario.
-POST - [`/users/login`] - Logea a un usuario retornando un token.
-POST - [`/users/:user_id/services`] - Crea un nuevo servicio requerido por el usuario.
-POST - [`/services/:service_id/comments`] - Crea un nuevo comentario en un servicio.
-
-GET - [`/users/services`] - Retorna los servicios existentes.
-GET - [`/users/:user_id`] - Retorna información pública de un usuario (ver el perfil).
-GET - [`/users/:user_id/services`] - Retorna información de los servicios creados por un usuario.
-GET - [`/services/:service_id`] - Retorna información de un servicio específico.
-GET - [`/services/:service_id/comments`] - Retorna información de todos los comentarios de un servicio.
-
-PUT - [/users/:user_id] - Actualiza la información de un usuario.
-PUT - [/users/password] - Actualiza la contraseña de un usuario.
-PUT - [`/services/:service_id`] - Actualiza la información de un servicio específico.
-
-DELETE - [`/users/:user_id`] - Elimina un usuario.
-DELETE - [`/services/:service_id`] - Elimina un servicio específico.
-
 ------------Endpoints Will----------------------
 
 ## Endpoints del usuario ✅
@@ -94,17 +74,23 @@ DELETE - [`/services/:service_id`] - Elimina un servicio específico.
 
 ## Endpoints de servicios
 
--   **GET** - [`/entries`] - Retorna el listado de servicios.
--   **GET** - [`/entries/:entryId`] - Retorna un servicio en concreto. ➡️ `Token`
--   **POST** - [`/entries`] - Crea un nuevo servicio. ➡️ `Token`
--   **PUT** - [`/entries/:entryId`] - Actualizar una servicio. ➡️ `Token`
--   **DELETE** - [`/entries/:entryId`] - Eliminar un servicio en concreto. ➡️ `Token`
+-   _GET_ - [`/entries`] - Retorna el listado de servicios. (join tabla de usuarios -para sacar el email y nombre de usuario-,numero de comentarios) con query params hacer filtros (resueltos, no resueltos y por categorias (videos, traduccion...))
+    Gestionar con query params:
+    /entries devuelve todos los servicios
+    /entries?resolved=false todos los servicios no resueltos
+    /entries?resolved=false&category=video-editing todos los servicios de video editing no resueltos
+    Siempre devolveria los servicios ordenados por fecha des ✅
+
+-   _GET_ - [`/entries/:entryId`] - Retorna un servicio en concreto. ➡️ `Token`
+-   _POST_ - [`/entries`] - Crea un nuevo servicio. ➡️ `Token` (Casi terminado)✅
+-   _PUT_ - [`/entries/:entryId`] - Actualizar un servicio. ➡️ `Token`(posibilidad de ponerlo como resuelto)
+-   _DELETE_ - [`/entries/:entryId`] - Eliminar un servicio en concreto. ➡️ `Token`
 
 ## Endpoints de comentarios
 
--   **GET** - [`/comments/:serviceId`] - Retorna todos los comentarios de un servicio en concreto. ➡️ `Token`
--   **GET** - [`/comments/:commentId`] - Retorna un comentario en concreto. ➡️ `Token`
--   **POST** - [`/comments`] - Crea un nuevo comentario. ➡️ `Token`
--   **POST** - [`/comments/:commentId/files`] - Agregar un archivo a una comentario. ➡️ `Token`
--   **DELETE** - [`/comments/:commentId`] - Eliminar un comentario de una entrada. ➡️ `Token`
--   **DELETE** - [`/comments/:commentId/files`] - Eliminar un archivo de un comentario de una entrada. ➡️ `Token`
+-   _GET_ - [`/comments/:serviceId`] - Retorna todos los comentarios de un servicio en concreto. ➡️ `Token`
+    //- _GET_ - [`/comments/:commentId`] - Retorna un comentario en concreto. ➡️ `Token`//no es necesario
+-   _POST_ - [`/comments/:serviceId`] - Crea un nuevo comentario con la posibilidad de añadir un archivo. ➡️ `Token`
+    //- _POST_ - [`/comments/:commentId/files`] - Agregar un archivo a una comentario. ➡️ `Token`// no es necesario
+-   _DELETE_ - [`/comments/:commentId`] - Eliminar un comentario de una entrada incluido el archivo. ➡️ `Token`
+-   _DELETE_ - [`/comments/:commentId/files`] - Eliminar un archivo de un comentario de una entrada. ➡️ `Token`//no es necesario

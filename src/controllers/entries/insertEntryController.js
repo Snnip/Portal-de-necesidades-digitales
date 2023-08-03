@@ -15,7 +15,7 @@ const validateSchemaService = require('../../services/validateSchemaService');
 
 const insertEntryController = async (req, res, next) => {
     try {
-        const { filename, description } = req.body;
+        const { filename, category, description } = req.body;
 
         // Object.assign(req.body, req.files.file);
         console.log(req.body);
@@ -34,7 +34,13 @@ const insertEntryController = async (req, res, next) => {
         // Guardamos el archivo en la carpeta.
         const fileName = await saveFileService(file);
         // console.log(fileName);
-        await insertEntryModel(filename, description, fileName, userId);
+        await insertEntryModel(
+            filename,
+            category,
+            description,
+            fileName,
+            userId
+        );
 
         res.send({
             status: 'ok',
