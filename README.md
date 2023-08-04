@@ -18,20 +18,20 @@
 
 ### users
 
-| Campo            | Tipo                                    | Descripción                              |
-| ---------------- | --------------------------------------- | ---------------------------------------- |
-| id               | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del usuario          |
-| userName         | VARCHAR(50) UNIQUE NOT NULL             | Nombre del usuario                       |
-| email            | VARCHAR(100) UNIQUE NOT NULL            | Correo electrónico del usuario           |
-| password         | VARCHAR(100) NOT NULL                   | Contraseña del usuario                   |
-| biograph         | TEXT                                    | Biografía del usuario                    |
-| avatar           | CHAR(40)                                | Avatar del usuario (nombre de la foto)   |
-| active           | BOOLEAN DEFAULT FALSE                   | Si es un usuario verificado o no (email) |
-| role             | ENUM('admin', 'normal') DEFAULT 'normal'| Rol del usuario (administrador, o normal)|
-| registrationCode | VARCHAR(36)                             | Código de registro del usuario           |
-| recoverPassCode  | CHAR(10)                                | Recuperar código de acceso               |
-| createdAt        | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación del usuario     |
-| modifiedAt       | DATETIME ON UPDATE CURRENT_TIMESTAMP    | Fecha de modificación del usuario        |
+| Campo            | Tipo                                     | Descripción                               |
+| ---------------- | ---------------------------------------- | ----------------------------------------- |
+| id               | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT  | Identificador único del usuario           |
+| userName         | VARCHAR(50) UNIQUE NOT NULL              | Nombre del usuario                        |
+| email            | VARCHAR(100) UNIQUE NOT NULL             | Correo electrónico del usuario            |
+| password         | VARCHAR(100) NOT NULL                    | Contraseña del usuario                    |
+| biograph         | TEXT                                     | Biografía del usuario                     |
+| avatar           | CHAR(40)                                 | Avatar del usuario (nombre de la foto)    |
+| active           | BOOLEAN DEFAULT FALSE                    | Si es un usuario verificado o no (email)  |
+| role             | ENUM('admin', 'normal') DEFAULT 'normal' | Rol del usuario (administrador, o normal) |
+| registrationCode | VARCHAR(36)                              | Código de registro del usuario            |
+| recoverPassCode  | CHAR(10)                                 | Recuperar código de acceso                |
+| createdAt        | DATETIME DEFAULT CURRENT_TIMESTAMP       | Fecha y hora de creación del usuario      |
+| modifiedAt       | DATETIME ON UPDATE CURRENT_TIMESTAMP     | Fecha de modificación del usuario         |
 
 ### entries
 
@@ -39,7 +39,7 @@
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
 | id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT                                                                                           | Identificador único de una entrada         |
 | name        | VARCHAR(50)                                                                                                                       | Título de la entrada                       |
-| category    | ENUM('video-editing', 'image-editing', 'document-translation', 'document-correction',  'code-correction', 'other') DEFAULT 'other'| Categoría del archivo                      |
+| category    | ENUM('video-editing', 'image-editing', 'document-translation', 'document-correction', 'code-correction', 'other') DEFAULT 'other' | Categoría del archivo                      |
 | description | TEXT NOT NULL                                                                                                                     | Explicación del servicio que se necesita   |
 | fileName    | CHAR(40) NOT NULL                                                                                                                 | Nombre del archivo a resolver (uuid + ext) |
 | resolved    | BOOLEAN DEFAULT FALSE                                                                                                             | Estado de resolución de un servicio        |
