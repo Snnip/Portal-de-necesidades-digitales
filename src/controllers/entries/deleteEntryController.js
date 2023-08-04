@@ -2,13 +2,10 @@
 const selectEntryByIdModel = require('../../models/entries/selectEntryByIdModel');
 const deleteEntryModel = require('../../models/entries/deleteEntryModel');
 
-// Importamos los errores 
-const { notFoundError } = require('../../services/errorService');
-
 // Importamos los servicios
 const deleteFileService = require('../../services/deleteFileService');
 
-// Función controladora 
+// Función controladora
 const deleteEntryController = async (req, res, next) => {
     try {
         // Obtenemos el id de la entrada
@@ -22,16 +19,14 @@ const deleteEntryController = async (req, res, next) => {
 
         // Borramos la entrada de la base de datos.
         await deleteEntryModel(entryId);
-        
+
         res.send({
             status: 'ok',
             message: 'Archivo eliminado',
         });
-        
     } catch (err) {
         next(err);
     }
-
 };
 
 module.exports = deleteEntryController;
