@@ -7,6 +7,7 @@ const { authUser, entryExists } = require('../middlewares');
 
 // Importamos controladores
 const insertCommentController = require('../controllers/comments/insertCommentController');
+const deleteCommentController = require('../controllers/comments/deleteCommentController');
 
 // Endpoints de comentarios
 router.post(
