@@ -24,25 +24,30 @@
 | userName         | VARCHAR(50) UNIQUE NOT NULL             | Nombre del usuario                       |
 | email            | VARCHAR(100) UNIQUE NOT NULL            | Correo electrónico del usuario           |
 | password         | VARCHAR(100) NOT NULL                   | Contraseña del usuario                   |
-| biography        | TEXT                                    | Biografía del usuario                    |
+| biograph         | TEXT                                    | Biografía del usuario                    |
 | avatar           | CHAR(40)                                | Avatar del usuario (nombre de la foto)   |
 | active           | BOOLEAN DEFAULT FALSE                   | Si es un usuario verificado o no (email) |
+| role             | ENUM('admin', 'normal') DEFAULT 'normal'| Rol del usuario (administrador, o normal)|
 | registrationCode | VARCHAR(36)                             | Código de registro del usuario           |
+| recoverPassCode  | CHAR(10)                                | Recuperar código de acceso               |
 | createdAt        | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación del usuario     |
 | modifiedAt       | DATETIME ON UPDATE CURRENT_TIMESTAMP    | Fecha de modificación del usuario        |
 
-### services
+### entries
 
-| Campo       | Tipo                                    | Descripción                                |
-| ----------- | --------------------------------------- | ------------------------------------------ |
-| id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del servicio           |
-| name        | VARCHAR(50) NOT NULL                    | Título del servicio                        |
-| description | TEXT NOT NULL                           | Explicación del servicio que se necesita   |
-| fileName    | CHAR(40) NOT NULL                       | Nombre del archivo a resolver (uuid + ext) |
-| resolved    | BOOLEAN DEFAULT FALSE                   | Estado de resolución de un servicio        |
-| userId      | INT UNSIGNED NOT NULL                   | Identificador del usuario creador          |
-| createdAt   | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación del usuario       |
-| FOREIGN KEY | (userId) REFERENCES users(id)           | Llave foranea                              |
+| Campo       | Tipo                                            | Descripción                                |
+| ----------- | ----------------------------------------------- | ------------------------------------------ |
+| id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT         | Identificador único de una entrada         |
+| name        | VARCHAR(50)                                     | Título de la entrada                       |
+| category    | ENUM('video-editing', 'image-editing',          | Categoría del archivo                      |
+                'document-translation', 'document-correction', 
+                'code-correction', 'other') DEFAULT 'other'                             
+| description | TEXT NOT NULL                                   | Explicación del servicio que se necesita   |
+| fileName    | CHAR(40) NOT NULL                               | Nombre del archivo a resolver (uuid + ext) |
+| resolved    | BOOLEAN DEFAULT FALSE                           | Estado de resolución de un servicio        |
+| userId      | INT UNSIGNED NOT NULL                           | Identificador del usuario creador          |
+| createdAt   | DATETIME DEFAULT CURRENT_TIMESTAMP              | Fecha y hora de creación del usuario       |
+| FOREIGN KEY | (userId) REFERENCES users(id)                   | Llave foranea                              |
 
 ### comments
 
@@ -52,14 +57,14 @@
 | fileName    | CHAR(40)                                | Nombre de archivo terminado (uuid + ext) |
 | content     | TEXT                                    | Texto de commentario                     |
 | userId      | INT UNSIGNED NOT NULL                   | Identificador del usuario creador        |
-| serviceId   | INT UNSIGNED NOT NULL                   | Identificador del servicio creado        |
+| entryId     | INT UNSIGNED NOT NULL                   | Identificador de la entrada creada       |
 | createdAt   | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación de comentarios  |
 | FOREIGN KEY | (userId) REFERENCES users(id)           | Llave foranea                            |
 | FOREIGN KEY | (serviceId) REFERENCES services(id)     | Llave foranea                            |
 
 ------------Endpoints Will----------------------
 
-## Endpoints del usuario ✅
+## Endpoints del users ✅
 
 -   **POST** - [`/users`] - Crea un nuevo usuario.(Falta Joi) ✅
 -   **POST** - [`/users/login`] - Logea a un usuario retornando un token. (Falta Joi) ✅
@@ -72,7 +77,7 @@
 -   **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.(Opcional al acabar el proyecto)
 -   **PUT** - [`/users/password/reset`] - Actualiza la contraseña de un usuario mediante un código de recuperación.(Opcional al acabar el proyecto) ➡️ `Token`
 
-## Endpoints de servicios
+## Endpoints de entries
 
 -   _GET_ - [`/entries`] - Retorna el listado de servicios. (join tabla de usuarios -para sacar el email y nombre de usuario-,numero de comentarios) con query params hacer filtros (resueltos, no resueltos y por categorias (videos, traduccion...))
     Gestionar con query params:
@@ -86,7 +91,7 @@
 -   _PUT_ - [`/entries/:entryId`] - Actualizar un servicio. ➡️ `Token`(posibilidad de ponerlo como resuelto)✅
 -   _DELETE_ - [`/entries/:entryId`] - Eliminar un servicio en concreto. ➡️ `Token` ✅
 
-## Endpoints de comentarios
+## Endpoints de comments
 
 -   _GET_ - [`/comments/:serviceId`] - Retorna todos los comentarios de un servicio en concreto. ➡️ `Token`
     //- _GET_ - [`/comments/:commentId`] - Retorna un comentario en concreto. ➡️ `Token`//no es necesario
