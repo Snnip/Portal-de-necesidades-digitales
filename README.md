@@ -35,19 +35,17 @@
 
 ### entries
 
-| Campo       | Tipo                                            | Descripción                                |
-| ----------- | ----------------------------------------------- | ------------------------------------------ |
-| id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT         | Identificador único de una entrada         |
-| name        | VARCHAR(50)                                     | Título de la entrada                       |
-| category    | ENUM('video-editing', 'image-editing',          | Categoría del archivo                      |
-                'document-translation', 'document-correction', 
-                'code-correction', 'other') DEFAULT 'other'                             
-| description | TEXT NOT NULL                                   | Explicación del servicio que se necesita   |
-| fileName    | CHAR(40) NOT NULL                               | Nombre del archivo a resolver (uuid + ext) |
-| resolved    | BOOLEAN DEFAULT FALSE                           | Estado de resolución de un servicio        |
-| userId      | INT UNSIGNED NOT NULL                           | Identificador del usuario creador          |
-| createdAt   | DATETIME DEFAULT CURRENT_TIMESTAMP              | Fecha y hora de creación del usuario       |
-| FOREIGN KEY | (userId) REFERENCES users(id)                   | Llave foranea                              |
+| Campo       | Tipo                                                                                                                              | Descripción                                |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT                                                                                           | Identificador único de una entrada         |
+| name        | VARCHAR(50)                                                                                                                       | Título de la entrada                       |
+| category    | ENUM('video-editing', 'image-editing', 'document-translation', 'document-correction',  'code-correction', 'other') DEFAULT 'other'| Categoría del archivo                      |
+| description | TEXT NOT NULL                                                                                                                     | Explicación del servicio que se necesita   |
+| fileName    | CHAR(40) NOT NULL                                                                                                                 | Nombre del archivo a resolver (uuid + ext) |
+| resolved    | BOOLEAN DEFAULT FALSE                                                                                                             | Estado de resolución de un servicio        |
+| userId      | INT UNSIGNED NOT NULL                                                                                                             | Identificador del usuario creador          |
+| createdAt   | DATETIME DEFAULT CURRENT_TIMESTAMP                                                                                                | Fecha y hora de creación del usuario       |
+| FOREIGN KEY | (userId) REFERENCES users(id)                                                                                                     | Llave foranea                              |
 
 ### comments
 
