@@ -9,13 +9,12 @@ const {
 
 const authUser = async (req, res, next) => {
     try {
-        
         const { authorization } = req.headers;
 
         if (!authorization) notAuthenticatedError();
 
         // Info del token
-        let tokenInfo;    
+        let tokenInfo;
         try {
             // Try y catch usados para usar los mensajes personalizados y no los mensajes por default de jwt en caso de que falle .verify
             tokenInfo = jwt.verify(authorization, process.env.SECRET);

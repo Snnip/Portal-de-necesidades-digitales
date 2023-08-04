@@ -91,9 +91,9 @@
 
 ## Endpoints de comments
 
--   _GET_ - [`/comments/:serviceId`] - Retorna todos los comentarios de un servicio en concreto. ➡️ `Token`
+-   _GET_ - [`/comments/:serviceId`] - Retorna todos los comentarios de un servicio en concreto. ➡️ `Token` ✅✅
     //- _GET_ - [`/comments/:commentId`] - Retorna un comentario en concreto. ➡️ `Token`//no es necesario
--   _POST_ - [`/comments/:serviceId`] - Crea un nuevo comentario con la posibilidad de añadir un archivo. ➡️ `Token` ✅
+-   _POST_ - [`/comments/:serviceId`] - Crea un nuevo comentario con la posibilidad de añadir un archivo. ➡️ `Token` ✅✅
     //- _POST_ - [`/comments/:commentId/files`] - Agregar un archivo a una comentario. ➡️ `Token`// no es necesario
--   _DELETE_ - [`/comments/:commentId`] - Eliminar un comentario de una entrada incluido el archivo. ➡️ `Token`
+-   _DELETE_ - [`/comments/:commentId`] - Eliminar un comentario de una entrada incluido el archivo. ➡️ `Token` ✅✅
 -   _DELETE_ - [`/comments/:commentId/files`] - Eliminar un archivo de un comentario de una entrada. ➡️ `Token`//no es necesario

@@ -3,11 +3,19 @@ const express = require('express');
 const router = express.Router();
 
 // Importamos middlewares
-const { authUser, entryExists } = require('../middlewares');
+const {
+    authUser,
+    canEditComment,
+    commentExists,
+    entryExists,
+} = require('../middlewares');
 
 // Importamos controladores
-const insertCommentController = require('../controllers/comments/insertCommentController');
-const deleteCommentController = require('../controllers/comments/deleteCommentController');
+const {
+    insertCommentController,
+    deleteCommentController,
+    listCommentsController,
+} = require('../controllers/comments');
 
 // Endpoints de comentarios
 router.post(
@@ -15,6 +23,16 @@ router.post(
     authUser,
     entryExists,
     insertCommentController
+);
+
+router.get('/comments/:entryId', authUser, entryExists, listCommentsController);
+
+router.delete(
+    '/comments/:commentId',
+    authUser,
+    commentExists,
+    canEditComment,
+    deleteCommentController
 );
 
 module.exports = router;

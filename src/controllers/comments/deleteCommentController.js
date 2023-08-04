@@ -1,36 +1,33 @@
 //Importamos modelos
 const deleteCommentModel = require('../../models/comments/deleteCommentModel');
-const insertCommentModel = require('../../models/comments/insertCommentModel');
-
-// Importamos los errores 
-const { notFoundError } = require('../../services/errorService');
+const selectCommentByIdModel = require('../../models/comments/selectCommentByIdModel');
 
 // Importamos los servicios
 const deleteFileService = require('../../services/deleteFileService');
 
-const deleteCommentController = async (req, res,next) => {
-    try{
+const deleteCommentController = async (req, res, next) => {
+    try {
         // Obtenemos el id del comment
         const { commentId } = req.params;
 
-         // Obtenemos los detalles del comment
-         const comment = await insertCommentModel(commentId);
+        // Obtenemos los detalles del comment
+        const comment = await selectCommentByIdModel(commentId);
 
-         // Borrar el archivo de uploads
-        await deleteFileService(comment.fileName);
-        
-        // Borramos el comment de la base de datos.
+        if (comment.fileName) {
+            // Borrar el archivo de uploads
+            await deleteFileService(comment.fileName);
+        }
+
+        // Borramos el commentario de la base de datos.
         await deleteCommentModel(commentId);
 
         res.send({
             status: 'ok',
             message: 'Comentario eliminado',
         });
-    
-    
-    } catch (err){
+    } catch (err) {
         next(err);
     }
-}
+};
 
 module.exports = deleteCommentController;
