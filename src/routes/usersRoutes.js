@@ -20,5 +20,3 @@ router.get(`/users/`, authUser, userExists, getPrivateProfileController);
 router.put(`/users/avatar`, authUser, userExists, editUserAvatarController);
 
 module.exports = router;
-
-

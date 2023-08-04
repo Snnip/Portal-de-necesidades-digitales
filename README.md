@@ -64,11 +64,11 @@
 
 ## Endpoints del users ✅
 
--   **POST** - [`/users`] - Crea un nuevo usuario.(Falta Joi) ✅
--   **POST** - [`/users/login`] - Logea a un usuario retornando un token. (Falta Joi) ✅
--   **GET** - [`/users/:userId`] - Retorna información pública de un usuario (ver el perfil). ✅
--   **GET** - [`/users`] - Retorna información privada del usuario con el id del token. ➡️ `Token` ✅
--   **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token` ✅
+-   **POST** - [`/users`] - Crea un nuevo usuario. ✅✅
+-   **POST** - [`/users/login`] - Logea a un usuario retornando un token. ✅✅
+-   **GET** - [`/users/:userId`] - Retorna información pública de un usuario (ver el perfil). ✅✅
+-   **GET** - [`/users`] - Retorna información privada del usuario con el id del token. ➡️ `Token` ✅✅
+-   **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token` ✅✅
 
 ======================================================================================================
 
@@ -82,12 +82,12 @@
     /entries devuelve todos los servicios
     /entries?resolved=false todos los servicios no resueltos
     /entries?resolved=false&category=video-editing todos los servicios de video editing no resueltos
-    Siempre devolveria los servicios ordenados por fecha des ✅
+    Siempre devolveria los servicios ordenados por fecha des ✅✅
 
--   _GET_ - [`/entries/:entryId`] - Retorna un servicio en concreto. ➡️ `Token`
--   _POST_ - [`/entries`] - Crea un nuevo servicio. ➡️ `Token` (Casi terminado)✅
--   _PUT_ - [`/entries/:entryId`] - Actualizar un servicio. ➡️ `Token`(posibilidad de ponerlo como resuelto)✅
--   _DELETE_ - [`/entries/:entryId`] - Eliminar un servicio en concreto. ➡️ `Token` ✅
+-   _GET_ - [`/entries/:entryId`] - Retorna un servicio en concreto. ✅✅
+-   _POST_ - [`/entries`] - Crea un nuevo servicio. ➡️ `Token` ✅✅
+-   _PUT_ - [`/entries/:entryId`] - Actualizar un servicio. ➡️ `Token`(posibilidad de ponerlo como resuelto)✅✅
+-   _DELETE_ - [`/entries/:entryId`] - Eliminar un servicio en concreto. ➡️ `Token` (Preguntar cómo hacer para borrarlo si tiene comentarios) ✅
 
 ## Endpoints de comments
 

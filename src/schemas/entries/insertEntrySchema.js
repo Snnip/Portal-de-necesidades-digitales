@@ -8,6 +8,9 @@ const joiErrorMessages = {
     'string.min':
         'El nombre de usuario debe tener al menos {#limit} caracteres',
     'string.max': 'El campo "{#key}" no debe exceder los {#limit} caracteres',
+    'number.base': 'El valor de "{#key}" debe ser un número',
+    'number.max': 'El archivo no debe exceder los 10 MB',
+    'object.base': 'El valor de "{#key}" debe ser un objeto',
 };
 
 // Creamos el esquema de Joi
@@ -20,7 +23,18 @@ const insertEntrySchema = joi
             .max(500)
             .required()
             .messages(joiErrorMessages),
+        file: joi
+            .object({
+                name: joi.string().min(5).max(20).required(),
+                size: joi
+                    .number()
+                    .max(10000000)
+                    .required()
+                    .messages(joiErrorMessages),
+            })
+            .unknown(true),
     })
-    .unknown(true);
+    .unknown(true)
+    .messages(joiErrorMessages);
 
 module.exports = insertEntrySchema;

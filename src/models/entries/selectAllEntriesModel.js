@@ -14,7 +14,7 @@ const selectAllEntriesModel = async (category = '', resolved = '') => {
             LEFT JOIN comments c ON e.id = c.entryId
             WHERE e.category LIKE ? AND e.resolved LIKE ? 
             GROUP BY e.id
-            ORDER BY E.createdAt DESC;
+            ORDER BY e.createdAt DESC;
         `,
             [`%${category}%`, `%${resolved}%`]
         );

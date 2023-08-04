@@ -10,7 +10,7 @@ const selectUserByIdModel = async (userId) => {
 
         // Selecionamos los datos que necesitamos para encryptar el token
         const [users] = await connection.query(
-            `SELECT id, userName, email, biograph, avatar, createdAt FROM users WHERE id = ?
+            `SELECT id, userName, email, biograph, avatar, role, createdAt FROM users WHERE id = ?
             `,
             [userId]
         );

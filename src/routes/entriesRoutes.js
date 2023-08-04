@@ -6,6 +6,7 @@ const router = express.Router();
 const {
     deleteEntryController,
     editEntryController,
+    getEntryController,
     insertEntryController,
     listEntriesController,
 } = require('../controllers/entries');
@@ -21,6 +22,7 @@ const {
 // Endpoints servicios
 router.post(`/entries`, authUser, userExists, insertEntryController);
 router.get(`/entries`, listEntriesController);
+router.get(`/entries/:entryId`, entryExists, getEntryController);
 router.put(
     `/entries/:entryId`,
     authUser,

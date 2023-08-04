@@ -20,22 +20,24 @@ const insertEntryController = async (req, res, next) => {
         if (!req.files?.file) missingFieldsError();
 
         // Validamos datos con esquema de Joi
-        await validateSchemaService(insertEntrySchema, req.body);
+        await validateSchemaService(
+            insertEntrySchema,
+            Object.assign(req.body, req.files)
+        );
         const { file } = req.files;
 
         // Obtenemos datos del usuario usando token
         const userId = req.user.id;
 
-        
         // Guardamos el archivo en la carpeta.
         const fileName = await saveFileService(file);
-        
+
         await insertEntryModel(
             filename,
-            category,
             description,
             fileName,
-            userId
+            userId,
+            category
         );
 
         res.send({

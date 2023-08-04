@@ -1,11 +1,13 @@
+const deleteEntryController = require('./deleteEntryController');
+const editEntryController = require('./editEntryController');
+const getEntryController = require('./getEntryController');
 const insertEntryController = require('./insertEntryController');
 const listEntriesController = require('./listEntriesController');
-const editEntryController = require('./editEntryController');
-const deleteEntryController = require('./deleteEntryController');
 
 module.exports = {
     deleteEntryController,
     editEntryController,
+    getEntryController,
     insertEntryController,
     listEntriesController,
 };

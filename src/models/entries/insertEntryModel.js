@@ -4,10 +4,10 @@ const getDb = require('../../db/getDb');
 // Función que realiza una consulta a la base de datos para crear un nuevo servicio
 const insertEntryModel = async (
     name,
-    category = 'other',
     description,
     fileName,
-    userId
+    userId,
+    category = 'other'
 ) => {
     let connection;
     try {

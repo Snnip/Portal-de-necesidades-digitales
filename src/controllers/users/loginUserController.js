@@ -25,9 +25,6 @@ const loginUserController = async (req, res, next) => {
         // Validamos el body con joi
         await validateSchemaService(loginUserSchema, req.body);
 
-        // Si faltan campos lanzamos error
-        if (!email || !password) missingFieldsError();
-
         // Seleccionamos usuario por email.
         const user = await selectUserByEmailModel(email);
 
@@ -39,6 +36,7 @@ const loginUserController = async (req, res, next) => {
         const payload = {
             id: user.id,
             username: user.userName,
+            rol: user.role,
         };
 
         // Creamos token( 3 params, objeto anterior, el secreto del env y un objeto que indica el tiempo de actividad del token )

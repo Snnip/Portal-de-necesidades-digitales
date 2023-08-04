@@ -1,13 +1,17 @@
 // Importamos los modelos
 const selectAllEntriesModel = require('../../models/entries/selectAllEntriesModel');
+const listEntrySchema = require('../../schemas/entries/listEntrySchema');
+const validateSchemaService = require('../../services/validateSchemaService');
 
 // Función controladora
 const listEntriesController = async (req, res, next) => {
     try {
-        // Obtenemos el query param.
+        // Obtenemos los query params.
         const { category, resolved } = req.query;
 
         // Validamos con joi
+        await validateSchemaService(listEntrySchema, req.query);
+
         const entries = await selectAllEntriesModel(category, resolved);
 
         res.send({
