@@ -17,23 +17,19 @@ const insertEntryController = async (req, res, next) => {
     try {
         const { filename, category, description } = req.body;
 
-        // Object.assign(req.body, req.files.file);
-        console.log(req.body);
-        // console.log(combinedData);
-        // console.log(combinedData.filename);
         if (!req.files?.file) missingFieldsError();
 
         // Validamos datos con esquema de Joi
         await validateSchemaService(insertEntrySchema, req.body);
         const { file } = req.files;
-        console.log(req.files);
+
         // Obtenemos datos del usuario usando token
         const userId = req.user.id;
 
-        // console.log(userId);
+        
         // Guardamos el archivo en la carpeta.
         const fileName = await saveFileService(file);
-        // console.log(fileName);
+        
         await insertEntryModel(
             filename,
             category,

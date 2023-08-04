@@ -18,10 +18,10 @@ const deleteEntryController = async (req, res, next) => {
         const entry = await selectEntryByIdModel(entryId);
 
         // Borrar el archivo de uploads
-        deleteFileService(entry.fileName);
+        await deleteFileService(entry.fileName);
 
         // Borramos la entrada de la base de datos.
-        deleteEntryModel(entryId);
+        await deleteEntryModel(entryId);
         
         res.send({
             status: 'ok',
