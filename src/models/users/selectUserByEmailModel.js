@@ -1,5 +1,7 @@
 // Importamos la base de datos
 const getDb = require('../../db/getDb');
+
+// Importamos error.
 const { notFoundError } = require('../../services/errorService');
 
 const selectUserByEmailModel = async (email) => {

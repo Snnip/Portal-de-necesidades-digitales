@@ -38,13 +38,14 @@
 | Campo       | Tipo                                                                                                                              | Descripción                                |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
 | id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT                                                                                           | Identificador único de una entrada         |
-| name        | VARCHAR(50)                                                                                                                       | Título de la entrada                       |
+| title       | VARCHAR(50)                                                                                                                       | Título de la entrada                       |
 | category    | ENUM('video-editing', 'image-editing', 'document-translation', 'document-correction', 'code-correction', 'other') DEFAULT 'other' | Categoría del archivo                      |
 | description | TEXT NOT NULL                                                                                                                     | Explicación del servicio que se necesita   |
 | fileName    | CHAR(40) NOT NULL                                                                                                                 | Nombre del archivo a resolver (uuid + ext) |
 | resolved    | BOOLEAN DEFAULT FALSE                                                                                                             | Estado de resolución de un servicio        |
 | userId      | INT UNSIGNED NOT NULL                                                                                                             | Identificador del usuario creador          |
 | createdAt   | DATETIME DEFAULT CURRENT_TIMESTAMP                                                                                                | Fecha y hora de creación del usuario       |
+| modifiedAt  | DATETIME ON UPDATE CURRENT_TIMESTAMP                                                                                              | Fecha de modificación del usuario          |
 | FOREIGN KEY | (userId) REFERENCES users(id)                                                                                                     | Llave foranea                              |
 
 ### comments
@@ -60,8 +61,6 @@
 | FOREIGN KEY | (userId) REFERENCES users(id)           | Llave foranea                            |
 | FOREIGN KEY | (serviceId) REFERENCES services(id)     | Llave foranea                            |
 
-------------Endpoints Will----------------------
-
 ## Endpoints del users ✅
 
 -   **POST** - [`/users`] - Crea un nuevo usuario. ✅✅
@@ -69,13 +68,9 @@
 -   **GET** - [`/users/:userId`] - Retorna información pública de un usuario (ver el perfil). ✅✅
 -   **GET** - [`/users`] - Retorna información privada del usuario con el id del token. ➡️ `Token` ✅✅
 -   **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token` ✅✅
+-   **PUT** - [`/users/password`] - Permite actualizar la contraseña del usuario. ➡️ `Token` ✅✅
 
-======================================================================================================
-
--   **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.(Opcional al acabar el proyecto)
--   **PUT** - [`/users/password/reset`] - Actualiza la contraseña de un usuario mediante un código de recuperación.(Opcional al acabar el proyecto) ➡️ `Token`
-
-## Endpoints de entries
+## Endpoints de servicios
 
 -   _GET_ - [`/entries`] - Retorna el listado de servicios. (join tabla de usuarios -para sacar el email y nombre de usuario-,numero de comentarios) con query params hacer filtros (resueltos, no resueltos y por categorias (videos, traduccion...))
     Gestionar con query params:
@@ -89,11 +84,9 @@
 -   _PUT_ - [`/entries/:entryId`] - Actualizar un servicio. ➡️ `Token`(posibilidad de ponerlo como resuelto)✅✅
 -   _DELETE_ - [`/entries/:entryId`] - Eliminar un servicio en concreto. ➡️ `Token` (Preguntar cómo hacer para borrarlo si tiene comentarios) ✅
 
-## Endpoints de comments
+## Endpoints de comentarios
 
 -   _GET_ - [`/comments/:serviceId`] - Retorna todos los comentarios de un servicio en concreto. ➡️ `Token` ✅✅
-    //- _GET_ - [`/comments/:commentId`] - Retorna un comentario en concreto. ➡️ `Token`//no es necesario
 -   _POST_ - [`/comments/:serviceId`] - Crea un nuevo comentario con la posibilidad de añadir un archivo. ➡️ `Token` ✅✅
-    //- _POST_ - [`/comments/:commentId/files`] - Agregar un archivo a una comentario. ➡️ `Token`// no es necesario
 -   _DELETE_ - [`/comments/:commentId`] - Eliminar un comentario de una entrada incluido el archivo. ➡️ `Token` ✅✅
 -   _DELETE_ - [`/comments/:commentId/files`] - Eliminar un archivo de un comentario de una entrada. ➡️ `Token`//no es necesario

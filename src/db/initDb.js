@@ -36,13 +36,14 @@ const main = async () => {
         await connection.query(`
           CREATE TABLE entries (
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-              name VARCHAR(50),
+              title VARCHAR(50),
               category ENUM('video-editing', 'image-editing', 'document-translation', 'document-correction', 'code-correction', 'other') DEFAULT 'other',
               description TEXT NOT NULL,
               fileName CHAR(50) NOT NULL,
               resolved BOOLEAN DEFAULT FALSE,
               userId INT UNSIGNED NOT NULL,
-              createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
+              createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+              modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP, 
               FOREIGN KEY (userId) REFERENCES users(id)
           );
       `);

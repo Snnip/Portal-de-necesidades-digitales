@@ -3,7 +3,7 @@ const getDb = require('../../db/getDb');
 
 // Función que realiza una consulta a la base de datos para crear un nuevo servicio
 const insertEntryModel = async (
-    name,
+    title,
     description,
     fileName,
     userId,
@@ -15,9 +15,9 @@ const insertEntryModel = async (
         // Insertamos entry.
         await connection.query(
             `
-            INSERT INTO entries ( name, description, fileName, userId,  category ) VALUES (?, ?, ?, ?, ?)
+            INSERT INTO entries ( title, description, fileName, userId,  category ) VALUES (?, ?, ?, ?, ?)
         `,
-            [name, description, fileName, userId, category]
+            [title, description, fileName, userId, category]
         );
     } finally {
         if (connection) connection.release();

@@ -3,3 +3,9 @@ Implementar Joi
     - Implemetar joi a los enpoints de users ✅
 
 Implementar los endpoints de entries
+
+
+======================================================================================================
+
+-   **POST** - [`/users/password/recover`] - Envía al usuario un correo de recuperación de contraseña.(Opcional al acabar el proyecto)
+-   **PUT** - [`/users/password/reset`] - Actualiza la contraseña de un usuario mediante un código de recuperación.(Opcional al acabar el proyecto) ➡️ `Token`
