@@ -16,7 +16,7 @@ const joiErrorMessages = {
 // Creamos el esquema de Joi
 const insertEntrySchema = joi
     .object({
-        filename: joi.string().min(5).required().messages(joiErrorMessages),
+        title: joi.string().min(5).required().messages(joiErrorMessages),
         description: joi
             .string()
             .min(10)

@@ -1,7 +1,7 @@
 // Importamos los modelos
 const selectAllCommentsModel = require('../../models/comments/selectAllCommentsModel');
 
-// Función controladora
+// Devuelve los comentarios de un servicio.
 const listCommentsController = async (req, res, next) => {
     try {
         // Obtenemos los path params.

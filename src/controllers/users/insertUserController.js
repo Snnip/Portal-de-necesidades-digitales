@@ -1,5 +1,3 @@
-// const Joi = require('joi');
-
 // Insertamos modelos
 const insertUserModel = require('../../models/users/insertUserModel');
 
@@ -9,6 +7,7 @@ const validateSchemaService = require('../../services/validateSchemaService');
 // Importamos el esquema
 const insertUserSchema = require('../../schemas/users/insertUserSchemas');
 
+// Creamos un nuevo usuario
 const insertUserController = async (req, res, next) => {
     try {
         const { userName, email, password } = req.body;

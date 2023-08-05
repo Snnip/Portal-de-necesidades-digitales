@@ -1,7 +1,7 @@
 // Importamos los modelos
 const selectEntryByIdModel = require('../../models/entries/selectEntryByIdModel');
 
-// Función controladora
+// Selecciona un servicio en concreto.
 const getEntryController = async (req, res, next) => {
     try {
         // Obtenemos el path param.

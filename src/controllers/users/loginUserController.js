@@ -3,14 +3,11 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-// Importamos errores
-const {
-    invalidCredentialsError,
-    missingFieldsError,
-} = require('../../services/errorService');
-
 // Importamos modelos
 const selectUserByEmailModel = require('../../models/users/selectUserByEmailModel');
+
+// Importamos errores
+const { invalidCredentialsError } = require('../../services/errorService');
 
 // Importamos los servicios.
 const validateSchemaService = require('../../services/validateSchemaService');
@@ -18,6 +15,7 @@ const validateSchemaService = require('../../services/validateSchemaService');
 // Importamos el esquema.
 const loginUserSchema = require('../../schemas/users/loginUserSchemas');
 
+// Logea un usuario devolviendo un token.
 const loginUserController = async (req, res, next) => {
     try {
         const { email, password } = req.body;

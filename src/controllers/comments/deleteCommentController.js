@@ -5,6 +5,7 @@ const selectCommentByIdModel = require('../../models/comments/selectCommentByIdM
 // Importamos los servicios
 const deleteFileService = require('../../services/deleteFileService');
 
+// Elimina un comentario en especifico.
 const deleteCommentController = async (req, res, next) => {
     try {
         // Obtenemos el id del comment

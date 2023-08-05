@@ -10,37 +10,44 @@ const validateSchemaService = require('../../services/validateSchemaService');
 
 const insertCommentController = async (req, res, next) => {
     try {
-        
         // Leemos los datos
         let fileName;
         const { entryId } = req.params;
         const { content } = req.body;
-        
 
         await validateSchemaService(insertCommentSchema, req.body);
         if (req.files?.file) {
             const { file } = req.files;
-            
+
             // Guardamos el archivo en la carpeta.
             fileName = await saveFileService(file);
         }
 
-        // Importamos modelos
-        await insertCommentModel(
+        // Insertamos el comentario y obtenemos el id asignado
+        const commentId = await insertCommentModel(
             content,
             req.user.id,
             entryId,
-            fileName,)
+            fileName
+        );
 
+        // Devolveremos datos utiles para el front
         res.send({
             status: 'ok',
-            message: 'Comentario creado'
-        })
-        
-        
+            data: {
+                comment: {
+                    id: commentId,
+                    userId: req.user.id,
+                    entryId,
+                    content,
+                    fileName,
+                    createdAt: new Date(),
+                },
+            },
+        });
     } catch (err) {
         next(err);
     }
- }
+};
 
 module.exports = insertCommentController;

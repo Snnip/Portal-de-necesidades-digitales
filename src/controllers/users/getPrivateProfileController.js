@@ -1,6 +1,7 @@
+// Importamos modelo
 const selectUserByIdModel = require('../../models/users/selectUserByIdModel');
 
-// Importamos modelo
+// Devuelve el perfil privado de un usuario
 const getPrivateProfileController = async (req, res, next) => {
     try {
         // Obtenemos datos del usuario

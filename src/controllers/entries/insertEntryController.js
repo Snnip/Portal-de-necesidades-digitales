@@ -1,9 +1,8 @@
-// Importamos errores
-const { missingFieldsError } = require('../../services/errorService');
-
 // Importamos modelos
 const insertEntryModel = require('../../models/entries/insertEntryModel');
-const selectUserByIdModel = require('../../models/users/selectUserByIdModel');
+
+// Importamos errores
+const { missingFieldsError } = require('../../services/errorService');
 
 // Importamos servicios
 const saveFileService = require('../../services/saveFileService');
@@ -31,13 +30,30 @@ const insertEntryController = async (req, res, next) => {
 
         // Guardamos el archivo en la carpeta.
         const fileName = await saveFileService(file);
-        console.log(fileName);
 
-        await insertEntryModel(title, description, fileName, userId, category);
+        // Insertamos servicio y obtenemos su id.
+        const entryId = await insertEntryModel(
+            title,
+            description,
+            fileName,
+            userId,
+            category
+        );
 
+        // Devolveremos datos utiles para el front
         res.send({
             status: 'ok',
-            message: 'Servicio creado',
+            data: {
+                entry: {
+                    id: entryId,
+                    title,
+                    description,
+                    fileName,
+                    userId,
+                    category,
+                    createdAt: new Date(),
+                },
+            },
         });
     } catch (err) {
         next(err);

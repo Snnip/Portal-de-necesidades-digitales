@@ -1,14 +1,15 @@
-// Importamos errores
-const { missingFieldsError } = require('../../services/errorService');
-
 // Importamos modelos
 const selectUserByIdModel = require('../../models/users/selectUserByIdModel');
 const updateUserAvatarModel = require('../../models/users/updateUserAvatarModel');
+
+// Importamos errores
+const { missingFieldsError } = require('../../services/errorService');
 
 // Importamos servicios
 const deleteFileService = require('../../services/deleteFileService');
 const saveAvatarService = require('../../services/saveAvatarService');
 
+// Actualiza el avatar de un usuario.
 const editUserAvatarController = async (req, res, next) => {
     try {
         // Comprobamos que hayan mandado archivo

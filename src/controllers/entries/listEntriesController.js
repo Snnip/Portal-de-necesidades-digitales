@@ -1,9 +1,11 @@
 // Importamos los modelos
 const selectAllEntriesModel = require('../../models/entries/selectAllEntriesModel');
+
+// Importamos los esquemas
 const listEntrySchema = require('../../schemas/entries/listEntrySchema');
 const validateSchemaService = require('../../services/validateSchemaService');
 
-// Función controladora
+// Devuelve los servicios permitiendo que se filtren por su categoria y/o por si el servicio esta solucionado o no.
 const listEntriesController = async (req, res, next) => {
     try {
         // Obtenemos los query params.

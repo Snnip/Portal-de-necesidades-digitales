@@ -1,6 +1,7 @@
 // Importamos modelo
 const selectUserByIdModel = require('../../models/users/selectUserByIdModel');
 
+// Devuelve el perfil público de un usuario
 const getUserProfileController = async (req, res, next) => {
     try {
         const { userId } = req.params;

@@ -1,24 +1,21 @@
 const getDb = require('../../db/getDb');
 
-const insertCommentModel = async (
-    content,
-    userId,
-    entryId,
-    fileName,
-) => {
+const insertCommentModel = async (content, userId, entryId, fileName) => {
     let connection;
-    try{
+    try {
         connection = await getDb();
 
         // Insertamos comment.
-        await connection.query(
+        const [comment] = await connection.query(
             `
             INSERT INTO comments ( content, userId, entryId, fileName ) VALUES ( ?, ?, ?, ?)
         `,
             [content, userId, entryId, fileName]
         );
-    
-    } finally{
+
+        // Retornamos el id asignado por la base de datos.
+        return comment.insertId;
+    } finally {
         if (connection) connection.release();
     }
 };

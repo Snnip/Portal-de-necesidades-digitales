@@ -11,8 +11,6 @@ const editEntryController = async (req, res, next) => {
         // Validar con Joi que los campos son correctos
         await validateSchemaService(listEntrySchema, req.body);
 
-        console.log(req.body.category, req.body.resolved);
-
         // Actualizamos los datos
         await updateEntryModel(req.body.category, req.body.resolved, entryId);
 
