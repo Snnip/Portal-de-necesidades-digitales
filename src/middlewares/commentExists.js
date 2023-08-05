@@ -4,7 +4,7 @@ const getDb = require('../db/getDb');
 // Importamos los errores.
 const { notFoundError } = require('../services/errorService');
 
-// Función controladora intermedia que lanza un error si no existe
+// Función controladora intermedia que lanza un error si no existe.
 const commentExists = async (req, res, next) => {
     let connection;
 

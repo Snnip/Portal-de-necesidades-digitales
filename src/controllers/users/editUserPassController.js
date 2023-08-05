@@ -1,10 +1,10 @@
-// Importamos modelo
+// Importamos modelo.
 const updateUserPassModel = require('../../models/users/updateUserPassModel');
 
-// Importamos servicios
+// Importamos los servicios.
 const validateSchemaService = require('../../services/validateSchemaService');
 
-// Importamos esquemas
+// Importamos los esquemas.
 const updatePassSchema = require('../../schemas/users/updatePassSchema');
 
 const editUserPassController = async (req, res, next) => {

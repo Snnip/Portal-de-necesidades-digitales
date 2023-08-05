@@ -1,25 +1,25 @@
-//Importamos modelos
+//Importamos modelos.
 const deleteCommentModel = require('../../models/comments/deleteCommentModel');
 const selectCommentByIdModel = require('../../models/comments/selectCommentByIdModel');
 
-// Importamos los servicios
+// Importamos los servicios.
 const deleteFileService = require('../../services/deleteFileService');
 
-// Elimina un comentario en especifico.
+// Elimina un comentario en específico.
 const deleteCommentController = async (req, res, next) => {
     try {
-        // Obtenemos el id del comment
+        // Obtenemos el id del comment.
         const { commentId } = req.params;
 
-        // Obtenemos los detalles del comment
+        // Obtenemos los detalles del comment.
         const comment = await selectCommentByIdModel(commentId);
 
         if (comment.fileName) {
-            // Borrar el archivo de uploads
+            // Borrar el archivo de uploads.
             await deleteFileService(comment.fileName);
         }
 
-        // Borramos el commentario de la base de datos.
+        // Borramos el comentario de la base de datos.
         await deleteCommentModel(commentId);
 
         res.send({

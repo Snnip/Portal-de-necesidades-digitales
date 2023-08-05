@@ -1,7 +1,7 @@
-// Leemos las variables de entorno
+// Leemos las variables de entorno.
 require('dotenv').config();
 
-// Accedemos al fichero
+// Accedemos al fichero.
 const getDb = require('./getDb');
 
 const main = async () => {
@@ -14,7 +14,7 @@ const main = async () => {
         await connection.query('DROP TABLE IF EXISTS comments, entries, users');
         console.log('Creando tablas');
 
-        // Creamos la tabla users
+        // Creamos la tabla users.
         await connection.query(`
           CREATE TABLE users (
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -32,7 +32,7 @@ const main = async () => {
           );
       `);
 
-        // Creamos la tabla entries
+        // Creamos la tabla entries.
         await connection.query(`
           CREATE TABLE entries (
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -48,7 +48,7 @@ const main = async () => {
           );
       `);
 
-        // Creamos la tabla comments
+        // Creamos la tabla comments.
         await connection.query(`
           CREATE TABLE comments (
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -66,9 +66,9 @@ const main = async () => {
     } catch (err) {
         console.error(err);
     } finally {
-        // Liberamos la conexión
+        // Liberamos la conexión.
         if (connection) connection.release();
-        // Cerramos proceso de manera automatica
+        // Cerramos proceso de manera automática.
         process.exit();
     }
 };

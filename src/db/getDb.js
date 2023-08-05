@@ -1,27 +1,27 @@
-// Importamos la dependencia mysql2
+// Importamos la dependencia mysql2.
 const mysql = require('mysql2/promise');
 
-// Importamos las variables globales
+// Importamos las variables globales.
 const { MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB } = process.env;
 
-// Variable donde guardamos el array de conexiones
+// Variable donde guardamos el array de conexiones.
 let pool;
 
-// Función que crea la base de datos si no existe
+// Función que crea la base de datos si no existe.
 const getDb = async () => {
     try {
-        // Si no existe un array de conexiones
+        // Si no existe un array de conexiones.
         if (!pool) {
-            // Creamos una conexión con la base de datos. Este proceso permite crear una base de datos de manera automatica si no existe.
+            // Creamos una conexión con la base de datos. Este proceso permite crear una base de datos de manera automática si no existe.
             const connection = await mysql.createConnection({
                 host: MYSQL_HOST,
                 user: MYSQL_USER,
                 password: MYSQL_PASS,
             });
-            // Creamos la base de datos si no existe
+            // Creamos la base de datos si no existe.
             await connection.query(`CREATE DATABASE IF NOT EXISTS ${MYSQL_DB}`);
 
-            // Creamos un grupo de conexiones
+            // Creamos un grupo de conexiones.
             pool = mysql.createPool({
                 connectionLimit: 10,
                 host: MYSQL_HOST,
@@ -31,12 +31,12 @@ const getDb = async () => {
                 timezone: 'Z',
             });
         }
-        // Liberamos la conexión
+        // Liberamos la conexión.
         return await pool.getConnection();
     } catch (err) {
         console.error(err);
     }
 };
 
-// Exportamos la función
+// Exportamos la función.
 module.exports = getDb;

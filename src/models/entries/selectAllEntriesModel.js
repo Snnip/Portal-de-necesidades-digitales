@@ -1,3 +1,4 @@
+// Importamos la función que devuelve una conexión con la base de datos.
 const getDb = require('../../db/getDb');
 
 // Función que consulta la base de datos para obtener el listado de entradas.
@@ -7,6 +8,7 @@ const selectAllEntriesModel = async (category = '', resolved = '') => {
     try {
         connection = await getDb();
 
+        // Obtenemos la información necesaria de la entrada.
         const [entries] = await connection.query(
             `
             SELECT e.name, e.category, e.description, e.fileName, e.resolved, u.userName, COUNT(c.id) AS numberOfComments, e.createdAt FROM entries e

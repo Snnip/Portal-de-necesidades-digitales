@@ -1,4 +1,4 @@
-// Importamos los modelos
+// Importamos los modelos.
 const selectAllCommentsModel = require('../../models/comments/selectAllCommentsModel');
 
 // Devuelve los comentarios de un servicio.

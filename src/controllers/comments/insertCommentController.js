@@ -1,16 +1,16 @@
-//Importamos modelos
+//Importamos modelos.
 const insertCommentModel = require('../../models/comments/insertCommentModel');
 
 // Importamos esquemas.
 const insertCommentSchema = require('../../schemas/comments/insertCommentSchema');
 
-// Importamos servicios
+// Importamos servicios.
 const saveFileService = require('../../services/saveFileService');
 const validateSchemaService = require('../../services/validateSchemaService');
 
 const insertCommentController = async (req, res, next) => {
     try {
-        // Leemos los datos
+        // Leemos los datos.
         let fileName;
         const { entryId } = req.params;
         const { content } = req.body;
@@ -23,7 +23,7 @@ const insertCommentController = async (req, res, next) => {
             fileName = await saveFileService(file);
         }
 
-        // Insertamos el comentario y obtenemos el id asignado
+        // Insertamos el comentario y obtenemos el id asignado.
         const commentId = await insertCommentModel(
             content,
             req.user.id,
@@ -31,7 +31,7 @@ const insertCommentController = async (req, res, next) => {
             fileName
         );
 
-        // Devolveremos datos utiles para el front
+        // Devolveremos datos útiles para el front.
         res.send({
             status: 'ok',
             data: {

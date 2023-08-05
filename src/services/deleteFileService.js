@@ -1,3 +1,4 @@
+// Importamos las dependencias.
 const fs = require('fs/promises');
 const path = require('path');
 const { deleteFileError } = require('./errorService');
@@ -21,11 +22,11 @@ const deleteFileService = async (fileName) => {
         try {
             await fs.access(filePath);
         } catch {
-            // Si no existe el archivo salimos de la funcion
+            // Si no existe el archivo salimos de la función.
             return;
         }
 
-        // Eliminamos el archivo de la carpeta
+        // Eliminamos el archivo de la carpeta.
         await fs.unlink(filePath);
     } catch (err) {
         console.error(err);

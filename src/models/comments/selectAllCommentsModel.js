@@ -1,12 +1,14 @@
+// Importamos la función que devuelve una conexión con la base de datos.
 const getDb = require('../../db/getDb');
 
-// Función que consulta la base de datos para obtener el listado de comentarios
+// Función que consulta la base de datos para obtener el listado de comentarios.
 const selectAllCommentsModel = async (entryId) => {
     let connection;
 
     try {
         connection = await getDb();
 
+        // Obtenemos el listado de comentarios.
         const [comments] = await connection.query(
             ` 
             SELECT
@@ -23,6 +25,8 @@ const selectAllCommentsModel = async (entryId) => {
         `,
             [entryId]
         );
+
+        // Retornamos los comentarios.
         return comments;
     } finally {
         if (connection) connection.release();

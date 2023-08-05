@@ -10,15 +10,13 @@ const {
     userNameAlreadyRegisteredError,
 } = require('../../services/errorService');
 
-// Insertar un usuario.
-
+// Función que realiza una consulta a la base de datos para crear un nuevo usuario.
 const insertUserModel = async ({ userName, email, password }) => {
     let connection;
     try {
         connection = await getDb();
 
         // Comprobamos si existe algún usuario con el email establecido.
-
         let [users] = await connection.query(
             `
             SELECT id FROM users WHERE email = ? 
@@ -32,7 +30,6 @@ const insertUserModel = async ({ userName, email, password }) => {
         }
 
         // Comprobamos si existe algún usuario con el nombre de usuario establecido.
-
         [users] = await connection.query(
             `
             SELECT id FROM users WHERE userName = ? 

@@ -48,7 +48,7 @@
 | userId      | INT UNSIGNED NOT NULL                                                                                                             | Identificador del usuario creador          |
 | createdAt   | DATETIME DEFAULT CURRENT_TIMESTAMP                                                                                                | Fecha y hora de creación del usuario       |
 | modifiedAt  | DATETIME ON UPDATE CURRENT_TIMESTAMP                                                                                              | Fecha de modificación del usuario          |
-| FOREIGN KEY | (userId) REFERENCES users(id)                                                                                                     | Llave foranea                              |
+| FOREIGN KEY | (userId) REFERENCES users(id)                                                                                                     | Llave foránea                              |
 
 ### comments
 
@@ -56,37 +56,37 @@
 | ----------- | --------------------------------------- | ---------------------------------------- |
 | id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del usuario          |
 | fileName    | CHAR(40)                                | Nombre de archivo terminado (uuid + ext) |
-| content     | TEXT                                    | Texto de commentario                     |
+| content     | TEXT                                    | Texto de comentario                      |
 | userId      | INT UNSIGNED NOT NULL                   | Identificador del usuario creador        |
 | entryId     | INT UNSIGNED NOT NULL                   | Identificador de la entrada creada       |
 | createdAt   | DATETIME DEFAULT CURRENT_TIMESTAMP      | Fecha y hora de creación de comentarios  |
-| FOREIGN KEY | (userId) REFERENCES users(id)           | Llave foranea                            |
-| FOREIGN KEY | (serviceId) REFERENCES services(id)     | Llave foranea                            |
+| FOREIGN KEY | (userId) REFERENCES users(id)           | Llave foránea                            |
+| FOREIGN KEY | (serviceId) REFERENCES services(id)     | Llave foránea                            |
 
-## Endpoints del users ✅
+## Endpoints de users ✅
 
 -   **POST** - [`/users`] - Crea un nuevo usuario. ✅✅
--   **POST** - [`/users/login`] - Logea a un usuario retornando un token. ✅✅
+-   **POST** - [`/users/login`] - Loguea a un usuario retornando un token. ✅✅
 -   **GET** - [`/users/:userId`] - Retorna información pública de un usuario (ver el perfil). ✅✅
 -   **GET** - [`/users`] - Retorna información privada del usuario con el id del token. ➡️ `Token` ✅✅
 -   **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token` ✅✅
 -   **PUT** - [`/users/password`] - Permite actualizar la contraseña del usuario. ➡️ `Token` ✅✅
 
-## Endpoints de servicios
+## Endpoints de services
 
 -   _GET_ - [`/entries`] - Retorna el listado de servicios. (join tabla de usuarios -para sacar el email y nombre de usuario-,numero de comentarios) con query params hacer filtros (resueltos, no resueltos y por categorias (videos, traduccion...))
     Gestionar con query params:
     /entries devuelve todos los servicios
     /entries?resolved=false todos los servicios no resueltos
-    /entries?resolved=false&category=video-editing todos los servicios de video editing no resueltos
-    Siempre devolveria los servicios ordenados por fecha des ✅✅
+    /entries?resolved=false&category=video-editing todos los servicios de video editing no resueltos.
+    Siempre devolvería los servicios ordenados por fecha des ✅✅
 
 -   _GET_ - [`/entries/:entryId`] - Retorna un servicio en concreto. ✅✅
 -   _POST_ - [`/entries`] - Crea un nuevo servicio. ➡️ `Token` ✅✅
--   _PUT_ - [`/entries/:entryId`] - Actualizar un servicio. ➡️ `Token`(posibilidad de ponerlo como resuelto)✅✅
+-   _PUT_ - [`/entries/:entryId`] - Actualizar un servicio. ➡️ `Token` ✅✅
 -   _DELETE_ - [`/entries/:entryId`] - Eliminar un servicio en concreto. ➡️ `Token` (Preguntar cómo hacer para borrarlo si tiene comentarios) ✅
 
-## Endpoints de comentarios
+## Endpoints de comments
 
 -   _GET_ - [`/comments/:serviceId`] - Retorna todos los comentarios de un servicio en concreto. ➡️ `Token` ✅✅
 -   _POST_ - [`/comments/:serviceId`] - Crea un nuevo comentario con la posibilidad de añadir un archivo. ➡️ `Token` ✅✅

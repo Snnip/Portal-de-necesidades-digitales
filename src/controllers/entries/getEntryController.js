@@ -1,4 +1,4 @@
-// Importamos los modelos
+// Importamos los modelos.
 const selectEntryByIdModel = require('../../models/entries/selectEntryByIdModel');
 
 // Selecciona un servicio en concreto.

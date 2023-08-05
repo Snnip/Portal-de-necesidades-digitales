@@ -1,13 +1,13 @@
-// Importamos modelos
+// Importamos modelos.
 const insertEntryModel = require('../../models/entries/insertEntryModel');
 
-// Importamos errores
+// Importamos los errores,
 const { missingFieldsError } = require('../../services/errorService');
 
-// Importamos servicios
+// Importamos los servicios.
 const saveFileService = require('../../services/saveFileService');
 
-// Importamos esquemas
+// Importamos esquemas.
 const insertEntrySchema = require('../../schemas/entries/insertEntrySchema');
 
 const validateSchemaService = require('../../services/validateSchemaService');
@@ -18,14 +18,14 @@ const insertEntryController = async (req, res, next) => {
 
         if (!req.files?.file) missingFieldsError();
 
-        // Validamos datos con esquema de Joi
+        // Validamos datos con esquema de Joi.
         await validateSchemaService(
             insertEntrySchema,
             Object.assign(req.body, req.files)
         );
         const { file } = req.files;
 
-        // Obtenemos datos del usuario usando token
+        // Obtenemos datos del usuario usando token.
         const userId = req.user.id;
 
         // Guardamos el archivo en la carpeta.
@@ -40,7 +40,7 @@ const insertEntryController = async (req, res, next) => {
             category
         );
 
-        // Devolveremos datos utiles para el front
+        // Devolveremos datos útiles para el front.
         res.send({
             status: 'ok',
             data: {

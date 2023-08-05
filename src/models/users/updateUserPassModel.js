@@ -1,9 +1,10 @@
+// Importamos las dependencias.
 const bcrypt = require('bcrypt');
 
 // Importamos la función que devuelve una conexión con la base de datos.
 const getDb = require('../../db/getDb');
 
-// Importamos errores
+// Importamos los errores.
 const { invalidCredentialsError } = require('../../services/errorService');
 
 // Función que actualiza una contraseña de un usuario en la base de datos.

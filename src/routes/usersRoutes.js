@@ -13,15 +13,14 @@ const {
 } = require('../controllers/users');
 const { authUser, userExists } = require('../middlewares');
 
-// Endpoints usuarios
-
+// -- ENDPOINTS DE USERS --
 // Registrar un nuevo usuario
 router.post(`/users/register`, insertUserController);
 
-// Logear un usuario retornando un token
+// Loguear un usuario retornando un token
 router.post(`/users/login`, loginUserController);
 
-// Obtener el perfil publico de un usuario
+// Obtener el perfil público de un usuario
 router.get(`/users/:userId`, userExists, getUserProfileController);
 
 // Obtener el perfil privado de un usuario

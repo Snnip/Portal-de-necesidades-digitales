@@ -1,6 +1,7 @@
 // Importamos la base de datos
 const getDb = require('../../db/getDb');
 
+// Función que realiza una consulta a la base de datos para obtener información de una entrada concreta.
 const selectEntryByIdModel = async (entryId) => {
     let connection;
 
@@ -14,8 +15,8 @@ const selectEntryByIdModel = async (entryId) => {
             [entryId]
         );
 
-        // El array de entries solo debe traer un entry ya que el id es unico. Retornamos el entry en posicion 0.
-        return entries[0]; // se asegura de que envie el objeto y no [{}]
+        // El array de entries solo debe traer un entry ya que el id es único. Retornamos el entry en posición 0.
+        return entries[0]; // se asegura de que envíe el objeto y no [{}]
     } finally {
         if (connection) connection.release();
     }

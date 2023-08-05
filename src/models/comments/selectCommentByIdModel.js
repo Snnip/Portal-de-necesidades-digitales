@@ -1,6 +1,7 @@
-// Importamos la base de datos
+// Importamos la función que devuelve una conexión con la base de datos.
 const getDb = require('../../db/getDb');
 
+// Función que realiza una consulta a la base de datos para obtener un comentario concreto.
 const selectCommentByIdModel = async (commentId) => {
     let connection;
 
@@ -14,8 +15,8 @@ const selectCommentByIdModel = async (commentId) => {
             [commentId]
         );
 
-        // El array de comments solo debe traer un comment ya que el id es único. Retornamos el comment en posicion 0.
-        return comments[0]; // se asegura de que envie el objeto y no [{}]
+        // El array de comments solo debe traer un comment ya que el id es único. Retornamos el comment en posición 0.
+        return comments[0]; // se asegura de que envíe el objeto y no [{}]
     } finally {
         if (connection) connection.release();
     }

@@ -1,9 +1,10 @@
+// Importamos las dependencias.
 const fs = require('fs/promises');
 const path = require('path');
 const uuid = require('uuid');
 const sharp = require('sharp');
 
-// Importamos error
+// Importamos los errores.
 const { saveFileError } = require('./errorService');
 
 // Función que guarda un archivo en el directorio de subida de archivos.

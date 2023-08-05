@@ -7,15 +7,14 @@ const selectEntryByIdModel = require('../models/entries/selectEntryByIdModel');
 // Importamos los errores.
 const { unauthorizedUserError } = require('../services/errorService');
 
-// Función controladora intermedia que comprueba si un usuario tiene permiso para editar
-// una entrada.
+// Función controladora intermedia que comprueba si un usuario tiene permiso para editar una entrada.
 const canEdit = async (req, res, next) => {
     let connection;
 
     try {
         connection = await getDb();
 
-        // Obtenemos el id de la entrada en la cuál tendra lugar el cambio.
+        // Obtenemos el id de la entrada en la cuál tendrá lugar el cambio.
         const { entryId } = req.params;
 
         // Obtenemos los datos de la entrada.
@@ -36,5 +35,3 @@ const canEdit = async (req, res, next) => {
 };
 
 module.exports = canEdit;
-
-
