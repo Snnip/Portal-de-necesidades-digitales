@@ -20,9 +20,17 @@ const {
 } = require('../middlewares');
 
 // Endpoints servicios
+
+// Registrar un nuevo servicio
 router.post(`/entries`, authUser, userExists, insertEntryController);
+
+// Obtener la lista de todos los servicios
 router.get(`/entries`, listEntriesController);
+
+// Obtener un servicio específico
 router.get(`/entries/:entryId`, entryExists, getEntryController);
+
+// Actualizar la información de un servicio
 router.put(
     `/entries/:entryId`,
     authUser,
@@ -31,6 +39,8 @@ router.put(
     canEdit,
     editEntryController
 );
+
+// Eliminar un servicio
 router.delete(
     `/entries/:entryId`,
     authUser,

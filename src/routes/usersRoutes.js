@@ -14,6 +14,7 @@ const {
 const { authUser, userExists } = require('../middlewares');
 
 // -- ENDPOINTS DE USERS --
+
 // Registrar un nuevo usuario
 router.post(`/users/register`, insertUserController);
 

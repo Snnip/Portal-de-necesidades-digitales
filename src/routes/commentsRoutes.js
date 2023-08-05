@@ -18,6 +18,8 @@ const {
 } = require('../controllers/comments');
 
 // Endpoints de comentarios
+
+// Registrar un nuevo comentario a un servicio.
 router.post(
     '/comments/:entryId',
     authUser,
@@ -25,8 +27,10 @@ router.post(
     insertCommentController
 );
 
+// Obtener todos los comentarios de un servicio
 router.get('/comments/:entryId', authUser, entryExists, listCommentsController);
 
+// Eliminar un comentario.
 router.delete(
     '/comments/:commentId',
     authUser,
