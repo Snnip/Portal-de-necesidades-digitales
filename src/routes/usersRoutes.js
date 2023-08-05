@@ -5,6 +5,7 @@ const router = express.Router();
 // Controladores
 const {
     editUserAvatarController,
+    editUserPassController,
     getPrivateProfileController,
     getUserProfileController,
     insertUserController,
@@ -13,10 +14,23 @@ const {
 const { authUser, userExists } = require('../middlewares');
 
 // Endpoints usuarios
+
+// Registrar un nuevo usuario
 router.post(`/users/register`, insertUserController);
+
+// Logear un usuario retornando un token
 router.post(`/users/login`, loginUserController);
+
+// Obtener el perfil publico de un usuario
 router.get(`/users/:userId`, userExists, getUserProfileController);
+
+// Obtener el perfil privado de un usuario
 router.get(`/users/`, authUser, userExists, getPrivateProfileController);
+
+// Actualizar el avatar de un usuario
 router.put(`/users/avatar`, authUser, userExists, editUserAvatarController);
+
+// Actualizar la contraseña de un usuario
+router.put(`/users/password`, authUser, userExists, editUserPassController);
 
 module.exports = router;

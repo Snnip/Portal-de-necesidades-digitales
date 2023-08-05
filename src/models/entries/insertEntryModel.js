@@ -15,9 +15,9 @@ const insertEntryModel = async (
         // Insertamos entry.
         await connection.query(
             `
-            INSERT INTO entries ( name, category, description, fileName, userId) VALUES (?, ?, ?, ?, ?)
+            INSERT INTO entries ( name, description, fileName, userId,  category ) VALUES (?, ?, ?, ?, ?)
         `,
-            [name, category, description, fileName, userId]
+            [name, description, fileName, userId, category]
         );
     } finally {
         if (connection) connection.release();

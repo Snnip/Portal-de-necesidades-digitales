@@ -22,7 +22,7 @@ const main = async () => {
               email VARCHAR(100) NOT NULL UNIQUE,
               password VARCHAR(100) NOT NULL,
               biograph TEXT,
-              avatar CHAR(40),
+              avatar CHAR(50),
               active BOOLEAN DEFAULT FALSE,
               role ENUM('admin', 'normal') DEFAULT 'normal',
               registrationCode CHAR(30),
@@ -39,7 +39,7 @@ const main = async () => {
               name VARCHAR(50),
               category ENUM('video-editing', 'image-editing', 'document-translation', 'document-correction', 'code-correction', 'other') DEFAULT 'other',
               description TEXT NOT NULL,
-              fileName CHAR(40) NOT NULL,
+              fileName CHAR(50) NOT NULL,
               resolved BOOLEAN DEFAULT FALSE,
               userId INT UNSIGNED NOT NULL,
               createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
@@ -51,7 +51,7 @@ const main = async () => {
         await connection.query(`
           CREATE TABLE comments (
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-              fileName CHAR(40),
+              fileName CHAR(50),
               content TEXT NOT NULL,
               userId INT UNSIGNED NOT NULL,
               entryId INT UNSIGNED NOT NULL,

@@ -25,7 +25,7 @@ const insertEntrySchema = joi
             .messages(joiErrorMessages),
         file: joi
             .object({
-                name: joi.string().min(5).max(20).required(),
+                name: joi.string().min(5).max(40).required(),
                 size: joi
                     .number()
                     .max(10000000)

@@ -31,6 +31,7 @@ const insertEntryController = async (req, res, next) => {
 
         // Guardamos el archivo en la carpeta.
         const fileName = await saveFileService(file);
+        console.log(fileName);
 
         await insertEntryModel(
             filename,

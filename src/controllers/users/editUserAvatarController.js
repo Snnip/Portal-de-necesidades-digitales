@@ -3,9 +3,11 @@ const { missingFieldsError } = require('../../services/errorService');
 
 // Importamos modelos
 const selectUserByIdModel = require('../../models/users/selectUserByIdModel');
+const updateUserAvatarModel = require('../../models/users/updateUserAvatarModel');
+
+// Importamos servicios
 const deleteFileService = require('../../services/deleteFileService');
 const saveAvatarService = require('../../services/saveAvatarService');
-const updateUserAvatarModel = require('../../models/users/updateUserAvatarModel');
 
 const editUserAvatarController = async (req, res, next) => {
     try {
