@@ -14,8 +14,10 @@ const port = process.env.PORT || 3000;
 const routes = require('./src/routes');
 
 // Importamos los errores.
-const errorController = require('./src/controllers/errors/errorController');
-const notFoundController = require('./src/controllers/errors/notFoundController');
+const {
+    errorController,
+    notFoundController,
+} = require('./src/controllers/errors');
 
 // Creamos el servidor.
 const app = express();
@@ -39,12 +41,7 @@ app.use(fileUpload());
 app.use(routes);
 
 // Middleware de ruta no encontrada.
-app.use((req, res) => {
-    res.status(404).send({
-        status: 'error',
-        message: 'Ruta no encontrada',
-    });
-});
+app.use(notFoundController);
 
 // Middleware de error.
 app.use(errorController);
