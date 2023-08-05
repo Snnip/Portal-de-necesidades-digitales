@@ -4,6 +4,8 @@
 
 -- Ejemplo: traducir un texto, editar una foto, revisar un documento, etc… Solo necesidades que puedan realizarse mediante un fichero digital.
 
+# Tecnologías utilizadas.
+
 # Instalar
 
 1. Instalar las dependencias mediante el comando `npm install` o `npm i`.
