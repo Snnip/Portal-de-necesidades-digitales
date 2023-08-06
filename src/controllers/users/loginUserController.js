@@ -13,7 +13,7 @@ const { invalidCredentialsError } = require('../../services/errorService');
 const validateSchemaService = require('../../services/validateSchemaService');
 
 // Importamos el esquema.
-const loginUserSchema = require('../../schemas/users/loginUserSchemas');
+const loginUserSchema = require('../../schemas/users/loginUserSchema');
 
 // Loguea un usuario devolviendo un token.
 const loginUserController = async (req, res, next) => {

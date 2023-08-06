@@ -5,32 +5,58 @@ const router = express.Router();
 // Controladores
 const {
     editUserAvatarController,
+    editUserBioController,
+    editUserNameController,
     editUserPassController,
     getPrivateProfileController,
     getUserProfileController,
     insertUserController,
     loginUserController,
 } = require('../controllers/users');
-const { authUser, userExists } = require('../middlewares');
+
+const {
+    authUser,
+    emailExists,
+    userExists,
+    userNameExists,
+    canEdit,
+} = require('../middlewares');
 
 // -- ENDPOINTS DE USERS --
 
 // Registrar un nuevo usuario
-router.post(`/users/register`, insertUserController);
+router.post(
+    `/users/register`,
+    emailExists,
+    userNameExists,
+    insertUserController
+);
 
 // Loguear un usuario retornando un token
 router.post(`/users/login`, loginUserController);
 
-// Obtener el perfil público de un usuario
+// Obtener el perfil privado del usuario logueado
+router.get(`/users/info`, authUser, userExists, getPrivateProfileController);
+
+// Obtener el perfil público del usuario logueado
 router.get(`/users/:userId`, userExists, getUserProfileController);
 
-// Obtener el perfil privado de un usuario
-router.get(`/users/`, authUser, userExists, getPrivateProfileController);
-
-// Actualizar el avatar de un usuario
+// Actualizar el avatar del usuario logueado
 router.put(`/users/avatar`, authUser, userExists, editUserAvatarController);
 
-// Actualizar la contraseña de un usuario
+// Actualizar la contraseña del usuario logueado
 router.put(`/users/password`, authUser, userExists, editUserPassController);
+
+// Actualizar el nombre del usuario logueado
+router.put(
+    `/users/userName`,
+    authUser,
+    userExists,
+    userNameExists,
+    editUserNameController
+);
+
+// Actualizar la biografía del usuario logueado
+router.put(`/users/biography`, authUser, userExists, editUserBioController);
 
 module.exports = router;
