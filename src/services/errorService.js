@@ -1,4 +1,12 @@
 module.exports = {
+    deleteEntryWithCommentsError() {
+        throw {
+            httpStatus: 400, // Bad request
+            code: 'ENTRY_DELETED_FAILED',
+            message:
+                'Error al eliminar el servicio. Tiene comentarios asociados',
+        };
+    },
     deleteFileError() {
         throw {
             httpStatus: 409, // Conflict
@@ -69,11 +77,25 @@ module.exports = {
             message: 'El nombre de usuario ya está registrado',
         };
     },
+    userNameAlreadyExistsError() {
+        throw {
+            httpStatus: 409, // Conflict
+            code: 'USERNAME_ALREADY_USED',
+            message: 'El nombre de usuario ya existe',
+        };
+    },
     unauthorizedUserError() {
         throw {
             httpStatus: 409, // Conflict
             code: 'UNAUTHORIZED',
             message: 'El usuario no está autorizado para hacer esta operación',
+        };
+    },
+    unknownError() {
+        throw {
+            httpStatus: 500, // Conflict
+            code: 'UNKOWN_ERROR',
+            message: 'Ha ocurrido un error inesperado',
         };
     },
 };

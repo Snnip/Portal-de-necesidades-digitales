@@ -17,6 +17,7 @@ const {
     canEdit,
     entryExists,
     userExists,
+    canDeleteEntry,
 } = require('../middlewares');
 
 // Endpoints servicios
@@ -47,6 +48,7 @@ router.delete(
     userExists,
     entryExists,
     canEdit,
+    canDeleteEntry,
     deleteEntryController
 );
 

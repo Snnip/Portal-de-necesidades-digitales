@@ -10,7 +10,7 @@ const selectEntryByIdModel = async (entryId) => {
 
         // Selecionamos los datos que necesitamos.
         const [entries] = await connection.query(
-            `SELECT id, category, resolved, fileName , userId FROM entries WHERE id = ?
+            `SELECT id, category, resolved, fileName, userId FROM entries WHERE id = ?
             `,
             [entryId]
         );

@@ -27,10 +27,10 @@
 | email            | VARCHAR(100) UNIQUE NOT NULL             | Correo electrónico del usuario            |
 | password         | VARCHAR(100) NOT NULL                    | Contraseña del usuario                    |
 | biograph         | TEXT                                     | Biografía del usuario                     |
-| avatar           | CHAR(40)                                 | Avatar del usuario (nombre de la foto)    |
+| avatar           | CHAR(50)                                 | Avatar del usuario (nombre de la foto)    |
 | active           | BOOLEAN DEFAULT FALSE                    | Si es un usuario verificado o no (email)  |
 | role             | ENUM('admin', 'normal') DEFAULT 'normal' | Rol del usuario (administrador, o normal) |
-| registrationCode | VARCHAR(36)                              | Código de registro del usuario            |
+| registrationCode | VARCHAR(30)                              | Código de registro del usuario            |
 | recoverPassCode  | CHAR(10)                                 | Recuperar código de acceso                |
 | createdAt        | DATETIME DEFAULT CURRENT_TIMESTAMP       | Fecha y hora de creación del usuario      |
 | modifiedAt       | DATETIME ON UPDATE CURRENT_TIMESTAMP     | Fecha de modificación del usuario         |
@@ -43,7 +43,7 @@
 | title       | VARCHAR(50)                                                                                                                       | Título de la entrada                       |
 | category    | ENUM('video-editing', 'image-editing', 'document-translation', 'document-correction', 'code-correction', 'other') DEFAULT 'other' | Categoría del archivo                      |
 | description | TEXT NOT NULL                                                                                                                     | Explicación del servicio que se necesita   |
-| fileName    | CHAR(40) NOT NULL                                                                                                                 | Nombre del archivo a resolver (uuid + ext) |
+| fileName    | CHAR(50) NOT NULL                                                                                                                 | Nombre del archivo a resolver (uuid + ext) |
 | resolved    | BOOLEAN DEFAULT FALSE                                                                                                             | Estado de resolución de un servicio        |
 | userId      | INT UNSIGNED NOT NULL                                                                                                             | Identificador del usuario creador          |
 | createdAt   | DATETIME DEFAULT CURRENT_TIMESTAMP                                                                                                | Fecha y hora de creación del usuario       |
@@ -55,7 +55,7 @@
 | Campo       | Tipo                                    | Descripción                              |
 | ----------- | --------------------------------------- | ---------------------------------------- |
 | id          | INT UNSIGNED PRIMARY KEY AUTO_INCREMENT | Identificador único del usuario          |
-| fileName    | CHAR(40)                                | Nombre de archivo terminado (uuid + ext) |
+| fileName    | CHAR(50)                                | Nombre de archivo terminado (uuid + ext) |
 | content     | TEXT                                    | Texto de comentario                      |
 | userId      | INT UNSIGNED NOT NULL                   | Identificador del usuario creador        |
 | entryId     | INT UNSIGNED NOT NULL                   | Identificador de la entrada creada       |
@@ -68,9 +68,11 @@
 -   **POST** - [`/users`] - Crea un nuevo usuario. ✅✅
 -   **POST** - [`/users/login`] - Loguea a un usuario retornando un token. ✅✅
 -   **GET** - [`/users/:userId`] - Retorna información pública de un usuario (ver el perfil). ✅✅
--   **GET** - [`/users`] - Retorna información privada del usuario con el id del token. ➡️ `Token` ✅✅
+-   **GET** - [`/users/info`] - Retorna información privada del usuario con el id del token. ➡️ `Token` ✅✅
 -   **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token` ✅✅
 -   **PUT** - [`/users/password`] - Permite actualizar la contraseña del usuario. ➡️ `Token` ✅✅
+-   **PUT** - [`/users/biography`] - Permite actualizar la biografía del usuario. ➡️ `Token` ✅✅
+-   **PUT** - [`/users/userName`] - Permite actualizar el nombre de usuario. ➡️ `Token` ✅✅
 
 ## Endpoints de services
 
@@ -81,14 +83,13 @@
     /entries?resolved=false&category=video-editing todos los servicios de video editing no resueltos.
     Siempre devolvería los servicios ordenados por fecha des ✅✅
 
--   _GET_ - [`/entries/:entryId`] - Retorna un servicio en concreto. ✅✅
+-   _GET_ - [`/entries/:entryId`] - Retorna un servicio. ✅✅
 -   _POST_ - [`/entries`] - Crea un nuevo servicio. ➡️ `Token` ✅✅
 -   _PUT_ - [`/entries/:entryId`] - Actualizar un servicio. ➡️ `Token` ✅✅
--   _DELETE_ - [`/entries/:entryId`] - Eliminar un servicio en concreto. ➡️ `Token` (Preguntar cómo hacer para borrarlo si tiene comentarios) ✅
+-   _DELETE_ - [`/entries/:entryId`] - Eliminar un servicio. ➡️ `Token` ✅✅
 
 ## Endpoints de comments
 
--   _GET_ - [`/comments/:serviceId`] - Retorna todos los comentarios de un servicio en concreto. ➡️ `Token` ✅✅
+-   _GET_ - [`/comments/:serviceId`] - Retorna todos los comentarios de un servicio. ➡️ `Token` ✅✅
 -   _POST_ - [`/comments/:serviceId`] - Crea un nuevo comentario con la posibilidad de añadir un archivo. ➡️ `Token` ✅✅
 -   _DELETE_ - [`/comments/:commentId`] - Eliminar un comentario de una entrada incluido el archivo. ➡️ `Token` ✅✅
--   _DELETE_ - [`/comments/:commentId/files`] - Eliminar un archivo de un comentario de una entrada. ➡️ `Token`//no es necesario

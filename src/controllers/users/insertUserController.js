@@ -5,7 +5,7 @@ const insertUserModel = require('../../models/users/insertUserModel');
 const validateSchemaService = require('../../services/validateSchemaService');
 
 // Importamos el esquema.
-const insertUserSchema = require('../../schemas/users/insertUserSchemas');
+const insertUserSchema = require('../../schemas/users/insertUserSchema');
 
 // Creamos un nuevo usuario.
 const insertUserController = async (req, res, next) => {
