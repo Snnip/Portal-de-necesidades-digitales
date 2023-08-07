@@ -31,10 +31,10 @@ const updateUserPassModel = async (currentPass, newPass, userId) => {
         // Encriptamos la contraseña
         const hashedPass = await bcrypt.hash(newPass, 10);
 
-        // Si coinciden actualizamos la contraseña
+        // Si coinciden actualizamos la contraseña y la fecha de modificación.
         await connection.query(
             `
-            UPDATE users SET password = ? WHERE id = ?
+            UPDATE users SET password = ?, authModifiedAt = ${new Date().getTime()} WHERE id = ?
         `,
             [hashedPass, userId]
         );

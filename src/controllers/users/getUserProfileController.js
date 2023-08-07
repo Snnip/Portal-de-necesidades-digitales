@@ -11,6 +11,7 @@ const getUserProfileController = async (req, res, next) => {
 
         // Borramos datos sensibles antes de enviar a usuario.
         delete user.email;
+        delete user.authModifiedAt;
         // No lanzamos error porque si no mandan Id el modelo tendrá un array = 0 por lo que activará el notFound. Normalmente se lanzan errores de este tipo cuando se obtienen los datos del body, no de req.params o de req.query.
 
         res.send({

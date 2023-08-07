@@ -5,7 +5,9 @@ const jwt = require('jsonwebtoken');
 const {
     notAuthenticatedError,
     invalidCredentialsError,
+    outdatedTokenError,
 } = require('../services/errorService');
+const selectUserByIdModel = require('../models/users/selectUserByIdModel');
 
 const authUser = async (req, res, next) => {
     try {
@@ -23,8 +25,20 @@ const authUser = async (req, res, next) => {
             invalidCredentialsError(); // Error enviado al cliente.
         }
 
+        const { authModifiedAt } = await selectUserByIdModel(tokenInfo.id);
+
+        if (authModifiedAt !== null) {
+            const datetimeFromMysql = authModifiedAt;
+            const unixTimestamp = Math.floor(
+                new Date(datetimeFromMysql).getTime() / 1000
+            );
+
+            if (unixTimestamp > tokenInfo.iat) outdatedTokenError();
+        }
+
         // Creamos la propiedad 'user' en el objeto 'request'.
         req.user = tokenInfo;
+
         // Paso a la siguiente función controladora.
         next();
     } catch (err) {

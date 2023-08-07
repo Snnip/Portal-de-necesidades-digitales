@@ -21,6 +21,7 @@ const main = async () => {
               userName VARCHAR(50) UNIQUE NOT NULL,
               email VARCHAR(100) NOT NULL UNIQUE,
               password VARCHAR(100) NOT NULL,
+              authModifiedAt BIGINT UNSIGNED,
               biograph TEXT,
               avatar CHAR(50),
               active BOOLEAN DEFAULT FALSE,
