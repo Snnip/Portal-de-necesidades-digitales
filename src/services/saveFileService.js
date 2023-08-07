@@ -48,7 +48,7 @@ const saveFileService = async (file) => {
         await file.mv(filePath);
 
         // Retornamos el nombre del archivo.
-        return fileName;
+        return `/${fileExt.replace('.', '')}/${fileName}`;
     } catch (err) {
         console.error(err);
         saveFileError();

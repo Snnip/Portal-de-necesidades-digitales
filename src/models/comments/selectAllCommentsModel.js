@@ -17,7 +17,7 @@ const selectAllCommentsModel = async (entryId) => {
                 C.content, 
                 C.createdAt AS commentCreatedAt,
                 U.userName,
-                E.name AS entryName
+                E.title AS entryName
             FROM comments C
             LEFT JOIN users U ON C.userId = U.id
             LEFT JOIN entries E ON C.entryId = E.id

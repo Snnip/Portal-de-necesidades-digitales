@@ -53,7 +53,7 @@ const saveAvatarService = async (img, width) => {
         await avatarImg.toFile(filePath);
 
         // Retornamos el nombre del archivo.
-        return fileName;
+        return `/${fileExt.replace('.', '')}/${fileName}`;
     } catch (err) {
         console.error(err);
         saveFileError();

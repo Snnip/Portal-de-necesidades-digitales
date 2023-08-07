@@ -14,7 +14,6 @@ const deleteFileService = async (fileName) => {
             '..',
             '..',
             process.env.UPLOADS_DIR,
-            fileExt,
             fileName
         );
 

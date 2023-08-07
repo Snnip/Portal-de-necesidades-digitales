@@ -63,6 +63,13 @@ module.exports = {
             message: `El recurso requerido '${resource}' no existe`,
         };
     },
+    outdatedTokenError() {
+        throw {
+            httpStatus: 401, // Unauthorized
+            code: 'OUTDATED_TOKEN',
+            message: 'Token inválido. Vuelve a hacer login',
+        };
+    },
     saveFileError() {
         throw {
             httpStatus: 500, // Internal Server Error

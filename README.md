@@ -4,8 +4,6 @@
 
 -- Ejemplo: traducir un texto, editar una foto, revisar un documento, etc… Solo necesidades que puedan realizarse mediante un fichero digital.
 
-# Tecnologías utilizadas.
-
 # Instalar
 
 1. Instalar las dependencias mediante el comando `npm install` o `npm i`.
@@ -16,7 +14,9 @@
 
 4. Ejecutar `npm run dev` para lanzar el servidor.
 
-## portal_de_necesidades
+5. Utilizar Postman para testing. Colección incluida en repo.
+
+## portal_de_necesidades. Estructura base de datos.
 
 ### users
 
@@ -26,6 +26,7 @@
 | userName         | VARCHAR(50) UNIQUE NOT NULL              | Nombre del usuario                        |
 | email            | VARCHAR(100) UNIQUE NOT NULL             | Correo electrónico del usuario            |
 | password         | VARCHAR(100) NOT NULL                    | Contraseña del usuario                    |
+| authModifiedAt   | DATETIME                                 | Fecha de modificación de la contraseña    |
 | biograph         | TEXT                                     | Biografía del usuario                     |
 | avatar           | CHAR(50)                                 | Avatar del usuario (nombre de la foto)    |
 | active           | BOOLEAN DEFAULT FALSE                    | Si es un usuario verificado o no (email)  |
@@ -63,7 +64,7 @@
 | FOREIGN KEY | (userId) REFERENCES users(id)           | Llave foránea                            |
 | FOREIGN KEY | (serviceId) REFERENCES services(id)     | Llave foránea                            |
 
-## Endpoints de users ✅
+## Endpoints de users
 
 -   **POST** - [`/users`] - Crea un nuevo usuario. ✅✅
 -   **POST** - [`/users/login`] - Loguea a un usuario retornando un token. ✅✅

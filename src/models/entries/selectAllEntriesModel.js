@@ -11,7 +11,7 @@ const selectAllEntriesModel = async (category = '', resolved = '') => {
         // Obtenemos la información necesaria de la entrada.
         const [entries] = await connection.query(
             `
-            SELECT e.name, e.category, e.description, e.fileName, e.resolved, u.userName, COUNT(c.id) AS numberOfComments, e.createdAt FROM entries e
+            SELECT e.title, e.category, e.description, e.fileName, e.resolved, u.userName, COUNT(c.id) AS numberOfComments, e.createdAt FROM entries e
             JOIN users u ON e.userId = u.id
             LEFT JOIN comments c ON e.id = c.entryId
             WHERE e.category LIKE ? AND e.resolved LIKE ? 
