@@ -4,6 +4,7 @@ const joi = require('joi');
 const joiErrorMessages = {
     'string.base': "El valor de '{#key}' debe ser una cadena de texto",
     'any.required': "El campo '{#key}' es requerido",
+    'string.empty': "El campo '{#key}' no debe estar vacío",
     'string.min':
         'El nombre de usuario debe tener al menos {#limit} caracteres',
 };

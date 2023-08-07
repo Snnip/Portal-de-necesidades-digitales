@@ -24,14 +24,8 @@ const updateEntryModel = async (category, resolved, entryId) => {
             }
         }
 
-        await connection.query(query, queryArgs);
         // Actualizamos el servicio
-        // await connection.query(
-        //     ` UPDATE entries
-        //         SET category = ?, resolved = ?
-        //         WHERE id = ?`,
-        //     [category, resolved, entryId]
-        // );
+        await connection.query(query, queryArgs);
     } finally {
         if (connection) connection.release();
     }

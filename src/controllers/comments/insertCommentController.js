@@ -3,6 +3,7 @@ const insertCommentModel = require('../../models/comments/insertCommentModel');
 
 // Importamos esquemas.
 const insertCommentSchema = require('../../schemas/comments/insertCommentSchema');
+const insertFileToCommentSchema = require('../../schemas/comments/insertFileToCommentSchema');
 
 // Importamos servicios.
 const saveFileService = require('../../services/saveFileService');
@@ -17,6 +18,7 @@ const insertCommentController = async (req, res, next) => {
 
         await validateSchemaService(insertCommentSchema, req.body);
         if (req.files?.file) {
+            await validateSchemaService(insertFileToCommentSchema, req.files);
             const { file } = req.files;
 
             // Guardamos el archivo en la carpeta.
