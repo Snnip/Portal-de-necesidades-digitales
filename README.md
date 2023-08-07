@@ -92,20 +92,20 @@
 
 ## Endpoints de services
 
--   _GET_ - [`/entries`] - Retorna el listado de servicios. (join tabla de usuarios -para sacar el email y nombre de usuario-,numero de comentarios) con query params hacer filtros (resueltos, no resueltos y por categorias (videos, traduccion...))
+-   **GET** - [`/entries`] - Retorna el listado de servicios. (join tabla de usuarios -para sacar el email y nombre de usuario-,numero de comentarios) con query params hacer filtros (resueltos, no resueltos y por categorias (videos, traduccion...))
     Gestionar con query params:
     /entries devuelve todos los servicios
     /entries?resolved=false todos los servicios no resueltos
     /entries?resolved=false&category=video-editing todos los servicios de video editing no resueltos.
     Siempre devolvería los servicios ordenados por fecha des ✅✅
 
--   _GET_ - [`/entries/:entryId`] - Retorna un servicio. ✅✅
--   _POST_ - [`/entries`] - Crea un nuevo servicio. ➡️ `Token` ✅✅
--   _PUT_ - [`/entries/:entryId`] - Actualizar un servicio. ➡️ `Token` ✅✅
--   _DELETE_ - [`/entries/:entryId`] - Eliminar un servicio. ➡️ `Token` ✅✅
+-   **GET** - [`/entries/:entryId`] - Retorna un servicio. ✅✅
+-   **POST** - [`/entries`] - Crea un nuevo servicio. ➡️ `Token` ✅✅
+-   **PUT** - [`/entries/:entryId`] - Actualizar un servicio. ➡️ `Token` ✅✅
+-   **DELETE** - [`/entries/:entryId`] - Eliminar un servicio. ➡️ `Token` ✅✅
 
 ## Endpoints de comments
 
--   _GET_ - [`/comments/:serviceId`] - Retorna todos los comentarios de un servicio. ➡️ `Token` ✅✅
--   _POST_ - [`/comments/:serviceId`] - Crea un nuevo comentario con la posibilidad de añadir un archivo. ➡️ `Token` ✅✅
--   _DELETE_ - [`/comments/:commentId`] - Eliminar un comentario de una entrada incluido el archivo. ➡️ `Token` ✅✅
+-   **GET** - [`/comments/:serviceId`] - Retorna todos los comentarios de un servicio. ➡️ `Token` ✅✅
+-   **POST** - [`/comments/:serviceId`] - Crea un nuevo comentario con la posibilidad de añadir un archivo. ➡️ `Token` ✅✅
+-   **DELETE** - [`/comments/:commentId`] - Eliminar un comentario de una entrada incluido el archivo. ➡️ `Token` ✅✅
