@@ -4,6 +4,21 @@
 
 -- Ejemplo: traducir un texto, editar una foto, revisar un documento, etc… Solo necesidades que puedan realizarse mediante un fichero digital.
 
+# Tecnologías utilizadas
+
+1. Para la API
+
+    - NodeJs
+    - Express
+
+2. Para la base de datos
+
+    - Mysql
+
+3. Para el testing
+
+    - Postman
+
 # Instalar
 
 1. Instalar las dependencias mediante el comando `npm install` o `npm i`.
@@ -26,7 +41,7 @@
 | userName         | VARCHAR(50) UNIQUE NOT NULL              | Nombre del usuario                        |
 | email            | VARCHAR(100) UNIQUE NOT NULL             | Correo electrónico del usuario            |
 | password         | VARCHAR(100) NOT NULL                    | Contraseña del usuario                    |
-| authModifiedAt   | DATETIME                                 | Fecha de modificación de la contraseña    |
+| authModifiedAt   | BIGINT UNSIGNED                          | Fecha de modificación de la contraseña    |
 | biograph         | TEXT                                     | Biografía del usuario                     |
 | avatar           | CHAR(50)                                 | Avatar del usuario (nombre de la foto)    |
 | active           | BOOLEAN DEFAULT FALSE                    | Si es un usuario verificado o no (email)  |

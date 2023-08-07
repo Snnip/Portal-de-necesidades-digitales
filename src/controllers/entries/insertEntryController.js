@@ -14,7 +14,7 @@ const validateSchemaService = require('../../services/validateSchemaService');
 
 const insertEntryController = async (req, res, next) => {
     try {
-        const { title, category, description } = req.body;
+        let { title, category, description } = req.body;
 
         if (!req.files?.file) missingFieldsError();
 
@@ -32,7 +32,7 @@ const insertEntryController = async (req, res, next) => {
         const fileName = await saveFileService(file);
 
         // Insertamos servicio y obtenemos su id.
-        const entryId = await insertEntryModel(
+        const { entryId, assignedCategory } = await insertEntryModel(
             title,
             description,
             fileName,
@@ -50,7 +50,7 @@ const insertEntryController = async (req, res, next) => {
                     description,
                     fileName,
                     userId,
-                    category,
+                    category: assignedCategory,
                     createdAt: new Date(),
                 },
             },
