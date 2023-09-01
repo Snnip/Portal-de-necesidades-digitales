@@ -25,7 +25,7 @@ const deleteEntryController = async (req, res, next) => {
             message: 'Archivo eliminado',
         });
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         next(err);
     }
 };

@@ -16,6 +16,7 @@ const selectAllCommentsModel = async (entryId) => {
                 C.fileName,
                 C.content, 
                 C.createdAt AS commentCreatedAt,
+                U.id AS userId,
                 U.userName,
                 E.title AS entryName
             FROM comments C

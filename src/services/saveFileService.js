@@ -50,7 +50,7 @@ const saveFileService = async (file) => {
         // Retornamos el nombre del archivo.
         return `/${fileExt.replace('.', '')}/${fileName}`;
     } catch (err) {
-        console.error(err);
+        // console.error(err);
         saveFileError();
     }
 };

@@ -28,7 +28,7 @@ const deleteFileService = async (fileName) => {
         // Eliminamos el archivo de la carpeta.
         await fs.unlink(filePath);
     } catch (err) {
-        console.error(err);
+        // console.error(err);
         deleteFileError();
     }
 };

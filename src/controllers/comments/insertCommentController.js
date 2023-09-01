@@ -43,7 +43,7 @@ const insertCommentController = async (req, res, next) => {
                     entryId,
                     content,
                     fileName,
-                    createdAt: new Date(),
+                    // createdAt: new Date(),
                 },
             },
         });

@@ -48,5 +48,5 @@ app.use(errorController);
 
 // Ponemos el servidor a escuchar peticiones.
 app.listen(port, () => {
-    console.log(`Server listening at http://locahost:${port}`);
+    console.log(`Server listening at http://localhost:${port}`);
 });
