@@ -32,7 +32,7 @@ const insertEntryController = async (req, res, next) => {
         const fileName = await saveFileService(file);
 
         // Insertamos servicio y obtenemos su id.
-        const { entryId, assignedCategory } = await insertEntryModel(
+        const entry = await insertEntryModel(
             title,
             description,
             fileName,
@@ -44,15 +44,7 @@ const insertEntryController = async (req, res, next) => {
         res.send({
             status: 'ok',
             data: {
-                entry: {
-                    id: entryId,
-                    title,
-                    description,
-                    fileName,
-                    userId,
-                    category: assignedCategory,
-                    createdAt: new Date(),
-                },
+                entry,
             },
         });
     } catch (err) {

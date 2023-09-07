@@ -5,7 +5,7 @@ const joiErrorMessages = {
     'string.base': "El valor de '{#key}' debe ser una cadena",
     'any.required': "El campo '{#key}' es requerido",
     'string.empty': "El campo '{#key}' no debe estar vacío",
-    'string.min': 'El título debe tener al menos {#limit} caracteres',
+    'string.min': 'El campo {#key} debe tener al menos {#limit} caracteres',
     'string.max': "El campo '{#key}' no debe exceder los {#limit} caracteres",
     'number.base': "El valor de '{#key}' debe ser un número",
     'number.max': 'El archivo no debe exceder los 10 MB',

@@ -1,6 +1,8 @@
 // Importamos la función que devuelve una conexión con la base de datos.
 const getDb = require('../../db/getDb');
 
+const selectEntryByIdModel = require('./selectEntryByIdModel');
+
 // Creamos categorías válidas
 const categories = [
     'video-editing',
@@ -38,11 +40,12 @@ const insertEntryModel = async (
         // Insertamos servicio.
         const [entry] = await connection.query(query, queryArgs);
 
-        // Devolvemos el id que le asigna la base de datos a la entrada.
-        return {
-            entryId: entry.insertId,
-            assignedCategory: category,
-        };
+        // Seleccionamos los datos de la nueva entrada.
+
+        const newEntry = await selectEntryByIdModel(entry.insertId);
+
+        // Devolvemos los datos de la nueva entrada.
+        return newEntry;
     } finally {
         if (connection) connection.release();
     }
