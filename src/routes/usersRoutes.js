@@ -36,7 +36,7 @@ router.post(
 router.post(`/users/login`, loginUserController);
 
 // Obtener el perfil privado del usuario logueado
-router.get(`/users/info`, authUser, userExists, getPrivateProfileController);
+router.get(`/users/`, authUser, userExists, getPrivateProfileController);
 
 // Obtener el perfil público del usuario logueado
 router.get(`/users/:userId`, userExists, getUserProfileController);
