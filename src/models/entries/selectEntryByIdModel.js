@@ -10,9 +10,11 @@ const selectEntryByIdModel = async (entryId) => {
 
         // Seleccionamos los datos que necesitamos.
         const [entries] = await connection.query(
-            `SELECT e.id, e.title, e.category, e.description, e.fileName, e.resolved, e.userId, u.userName, u.avatar, e.createdAt FROM entries e
-            INNER JOIN users u ON e.userId = u.id
+            `SELECT e.id, e.title, e.category, e.description, e.fileName, e.resolved, e.userId, u.userName, u.avatar, COUNT(c.id) AS numberOfComments, e.createdAt FROM entries e
+            JOIN users u ON e.userId = u.id
+            LEFT JOIN comments c ON e.id = c.entryId
             WHERE e.id = ?
+            GROUP BY e.id
             `,
             [entryId]
         );

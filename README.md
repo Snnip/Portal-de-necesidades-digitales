@@ -84,7 +84,7 @@
 -   **POST** - [`/users`] - Crea un nuevo usuario. ✅✅
 -   **POST** - [`/users/login`] - Loguea a un usuario retornando un token. ✅✅
 -   **GET** - [`/users/:userId`] - Retorna información pública de un usuario (ver el perfil). ✅✅
--   **GET** - [`/users/info`] - Retorna información privada del usuario con el id del token. ➡️ `Token` ✅✅
+-   **GET** - [`/users/`] - Retorna información privada del usuario con el id del token. ➡️ `Token` ✅✅
 -   **PUT** - [`/users/avatar`] - Permite actualizar el avatar del usuario. ➡️ `Token` ✅✅
 -   **PUT** - [`/users/password`] - Permite actualizar la contraseña del usuario. ➡️ `Token` ✅✅
 -   **PUT** - [`/users/biography`] - Permite actualizar la biografía del usuario. ➡️ `Token` ✅✅
