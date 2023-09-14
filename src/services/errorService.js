@@ -3,106 +3,105 @@ module.exports = {
         throw {
             httpStatus: 400, // Bad request
             code: 'ENTRY_DELETED_FAILED',
-            message:
-                'Error al eliminar el servicio. Tiene comentarios asociados',
+            message: 'Error deleting the service. Has associated comments',
         };
     },
     deleteFileError() {
         throw {
             httpStatus: 409, // Conflict
             code: 'FILE_DELETED_FAILED',
-            message: 'Error al eliminar el archivo del disco',
+            message: 'Error deleting file from disk',
         };
     },
     emailAlreadyRegisteredError() {
         throw {
             httpStatus: 409, // Conflict
             code: 'EMAIL_ALREADY_REGISTERED',
-            message: 'El email ya está registrado',
+            message: 'The email is already registered',
         };
     },
     fileLimitReachedError() {
         throw {
             httpStatus: 409, // Conflict
             code: 'VIDEO_LIMIT_REACHED',
-            message: 'Se ha alcanzado el límite de 1 archivo',
+            message: 'The limit of 1 file has been reached',
         };
     },
     invalidCredentialsError() {
         throw {
             httpStatus: 401, // Unauthorized
             code: 'INVALID_CREDENTIALS',
-            message: 'Credenciales inválidas',
+            message: 'Invalid credentials',
         };
     },
     invalidTokenError() {
         throw {
             httpStatus: 401, // Unauthorized
             code: 'INVALID_TOKEN',
-            message: 'Token inválido',
+            message: 'Invalid token',
         };
     },
     missingFieldsError() {
         throw {
             httpStatus: 401, // Unauthorized
             code: 'MISSING_FIELDS',
-            message: 'Faltan campos',
+            message: 'Missing fields',
         };
     },
     notAuthenticatedError() {
         throw {
             httpStatus: 401, // Unauthorized
             code: 'NOT_AUTHENTICATED',
-            message: `Debes enviar un token en el header 'Authorization'`,
+            message: `You must send a token in the 'Authorization' header.`,
         };
     },
     notFoundError(resource) {
         throw {
             httpStatus: 404, // Not Found
             code: 'RESOURCE_NOT_FOUND',
-            message: `El recurso requerido '${resource}' no existe`,
+            message: `Required resource  '${resource}' does not exist`,
         };
     },
     outdatedTokenError() {
         throw {
             httpStatus: 401, // Unauthorized
             code: 'OUTDATED_TOKEN',
-            message: 'Token inválido. Vuelve a hacer login',
+            message: 'Invalid token. Re-login',
         };
     },
     saveFileError() {
         throw {
             httpStatus: 500, // Internal Server Error
             code: 'FILE_SAVE_FAILED',
-            message: 'Error al guardar el archivo en el disco',
+            message: 'Error saving file to disk',
         };
     },
     userNameAlreadyRegisteredError() {
         throw {
             httpStatus: 409, // Conflict
             code: 'USERNAME_ALREADY_REGISTERED',
-            message: 'El nombre de usuario ya está registrado',
+            message: 'The user name is already registered',
         };
     },
     userNameAlreadyExistsError() {
         throw {
             httpStatus: 409, // Conflict
             code: 'USERNAME_ALREADY_USED',
-            message: 'El nombre de usuario ya existe',
+            message: 'The user name already exists',
         };
     },
     unauthorizedUserError() {
         throw {
             httpStatus: 409, // Conflict
             code: 'UNAUTHORIZED',
-            message: 'El usuario no está autorizado para hacer esta operación',
+            message: 'The user is not authorized to perform this operation',
         };
     },
     unknownError() {
         throw {
             httpStatus: 500, // Conflict
             code: 'UNKOWN_ERROR',
-            message: 'Ha ocurrido un error inesperado',
+            message: 'An unexpected error has occurred',
         };
     },
 };
