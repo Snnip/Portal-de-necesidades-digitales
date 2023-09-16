@@ -18,11 +18,13 @@ const selectAllCommentsModel = async (entryId) => {
                 C.createdAt AS commentCreatedAt,
                 U.id AS userId,
                 U.userName,
+                U.avatar,
                 E.title AS entryName
             FROM comments C
             LEFT JOIN users U ON C.userId = U.id
             LEFT JOIN entries E ON C.entryId = E.id
             WHERE C.entryId = ?
+            ORDER BY C.createdAt DESC;
         `,
             [entryId]
         );

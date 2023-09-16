@@ -40,7 +40,7 @@ const main = async () => {
               title VARCHAR(50),
               category ENUM('video-editing', 'image-editing', 'document-translation', 'document-correction', 'code-correction', 'other') DEFAULT 'other',
               description TEXT NOT NULL,
-              fileName CHAR(50) NOT NULL,
+              fileName CHAR(100) NOT NULL,
               resolved BOOLEAN DEFAULT FALSE,
               userId INT UNSIGNED NOT NULL,
               createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -53,7 +53,7 @@ const main = async () => {
         await connection.query(`
           CREATE TABLE comments (
               id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-              fileName CHAR(50),
+              fileName CHAR(100),
               content TEXT NOT NULL,
               userId INT UNSIGNED NOT NULL,
               entryId INT UNSIGNED NOT NULL,
