@@ -17,11 +17,17 @@ const editEntryController = async (req, res, next) => {
         if (!req.body?.category && !req.body?.resolved) missingFieldsError();
 
         // Actualizamos los datos.
-        await updateEntryModel(req.body.category, req.body.resolved, entryId);
+        const updatedEntry = await updateEntryModel(
+            req.body.category,
+            req.body.resolved,
+            entryId
+        );
 
         res.send({
             status: 'ok',
-            message: 'Servicio actualizado',
+            data: {
+                updatedEntry,
+            },
         });
     } catch (err) {
         next(err);
