@@ -15,7 +15,7 @@ const userExists = async (req, res, next) => {
         const userId = req.user?.id || req.params.userId;
 
         const [users] = await connection.query(
-            `SELECT id FROM users WHERE id = ?`,
+            `SELECT id, userName FROM users WHERE id = ?`,
             [userId]
         );
 
@@ -23,6 +23,9 @@ const userExists = async (req, res, next) => {
         if (users.length < 1) {
             notFoundError('usuario');
         }
+
+        // Creamos la propiedad 'userName' en el objeto 'request'.
+        req.userName = users[0].userName;
 
         // Pasamos el control a la siguiente función controladora.
         next();

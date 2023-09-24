@@ -8,6 +8,7 @@ const {
     editUserBioController,
     editUserNameController,
     editUserPassController,
+    editUserController,
     getPrivateProfileController,
     getUserProfileController,
     insertUserController,
@@ -54,6 +55,15 @@ router.put(
     userExists,
     userNameExists,
     editUserNameController
+);
+
+// Actualizar el nombre del usuario logueado
+router.put(
+    `/users/update-profile`,
+    authUser,
+    userExists,
+    userNameExists,
+    editUserController
 );
 
 // Actualizar la biografía del usuario logueado

@@ -19,7 +19,7 @@ const userNameExists = async (req, res, next) => {
         );
 
         // Si existe algún usuario con ese nombre de usuario lanzamos un error.
-        if (users.length > 0) {
+        if (users.length > 0 && req.userName !== userName) {
             userNameAlreadyExistsError();
         }
 
