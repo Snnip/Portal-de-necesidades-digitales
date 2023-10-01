@@ -20,7 +20,7 @@ const selectUserByEmailModel = async (email) => {
         );
 
         // Si no existe el usuario lanzamos error.
-        if (users.length === 0) notFoundError('usuario');
+        if (users.length === 0) notFoundError('user');
 
         // El array de usuarios solo debe traer un usuario ya que el email es único. Retornamos el usuario en posición 0.
         return users[0]; // se asegura de que envíe el objeto y no [{}]

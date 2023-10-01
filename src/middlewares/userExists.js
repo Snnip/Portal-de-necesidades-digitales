@@ -21,7 +21,7 @@ const userExists = async (req, res, next) => {
 
         // Lanzamos un error si el usuario no existe.
         if (users.length < 1) {
-            notFoundError('usuario');
+            notFoundError('user');
         }
 
         // Creamos la propiedad 'userName' en el objeto 'request'.

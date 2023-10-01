@@ -4,9 +4,6 @@ const router = express.Router();
 
 // Controladores
 const {
-    editUserAvatarController,
-    editUserBioController,
-    editUserNameController,
     editUserPassController,
     editUserController,
     getPrivateProfileController,
@@ -42,22 +39,10 @@ router.get(`/users/`, authUser, userExists, getPrivateProfileController);
 // Obtener el perfil público del usuario logueado
 router.get(`/users/:userId`, userExists, getUserProfileController);
 
-// Actualizar el avatar del usuario logueado
-router.put(`/users/avatar`, authUser, userExists, editUserAvatarController);
-
 // Actualizar la contraseña del usuario logueado
 router.put(`/users/password`, authUser, userExists, editUserPassController);
 
-// Actualizar el nombre del usuario logueado
-router.put(
-    `/users/userName`,
-    authUser,
-    userExists,
-    userNameExists,
-    editUserNameController
-);
-
-// Actualizar el nombre del usuario logueado
+// Actualizar datos del usuario.
 router.put(
     `/users/update-profile`,
     authUser,
@@ -65,8 +50,5 @@ router.put(
     userNameExists,
     editUserController
 );
-
-// Actualizar la biografía del usuario logueado
-router.put(`/users/biography`, authUser, userExists, editUserBioController);
 
 module.exports = router;

@@ -59,7 +59,7 @@ module.exports = {
         throw {
             httpStatus: 404, // Not Found
             code: 'RESOURCE_NOT_FOUND',
-            message: `Required resource  '${resource}' does not exist`,
+            message: `Required resource ${resource} does not exist`,
         };
     },
     outdatedTokenError() {
