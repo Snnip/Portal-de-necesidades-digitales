@@ -2,14 +2,14 @@ const joi = require('joi');
 
 // Mensajes de error de Joi que necesitemos.
 const joiErrorMessages = {
-    'string.base': "El valor de '{#key}' debe ser una cadena",
-    'any.required': "El campo '{#key}' es requerido",
-    'string.empty': "El campo '{#key}' no debe estar vacío",
-    'string.min': 'El campo {#key} debe tener al menos {#limit} caracteres',
-    'string.max': "El campo '{#key}' no debe exceder los {#limit} caracteres",
-    'number.base': "El valor de '{#key}' debe ser un número",
-    'number.max': 'El archivo no debe exceder los 10 MB',
-    'object.base': "El valor de '{#key}' debe ser un objeto",
+    'string.base': 'The {#key} must be a text',
+    'any.required': 'Field {#key} required',
+    'string.empty': "Field {#key} shouldn't be empty",
+    'string.min': 'Field {#key} must have at least {#limit} characteres',
+    'string.max': 'The field {#key} cannot exceed {#limit} characters',
+    'number.base': 'The field {#key} must be a number',
+    'number.max': 'File cannot exceed 10 MB',
+    'object.base': "The {#key}' must be an object",
 };
 
 // Creamos el esquema de Joi
@@ -24,7 +24,7 @@ const insertEntrySchema = joi
             .messages(joiErrorMessages),
         file: joi
             .object({
-                name: joi.string().min(5).max(50).required(),
+                name: joi.string().min(5).max(100).required(),
                 size: joi
                     .number()
                     .max(10000000)

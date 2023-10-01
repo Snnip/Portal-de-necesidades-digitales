@@ -12,15 +12,12 @@ const validCategories = [
 
 // Modificamos los mensajes de error de Joi
 const joiErrorMessages = {
-    'string.base': "El valor de '{#key}' debe ser una cadena",
-    'any.required': "El campo '{#key}' es requerido",
-    'string.empty': "El campo '{#key}' no debe estar vacío",
+    'string.base': 'The {#key} must be a text',
+    'any.required': 'Field {#key} required',
+    'string.empty': "Field {#key} shouldn't be empty",
     'any.only':
-        'El valor de la categoría debe ser uno de los siguientes: ' +
-        validCategories.join(', ') +
-        '.',
-    'boolean.base':
-        'El campo de resolución debe ser un valor booleano (true o false).',
+        'The allowed categories are: ' + validCategories.join(', ') + '.',
+    'boolean.base': 'field should be a boolean type (true or false).',
 };
 
 // Creamos el esquema de Joi
